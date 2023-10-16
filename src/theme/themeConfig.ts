@@ -1,11 +1,13 @@
+// theme/themeConfig.ts
+
 import type { ThemeConfig } from 'antd';
 
 const theme: ThemeConfig = {
   token: {
-    fontSize: 16,
-    colorPrimary: '#52c41a',
+    colorPrimary: '#363aed',
+    borderRadius: 2.5,
+    fontFamily: 'Sofia Sans',
   },
 };
 
 export default theme;
-// icon : #374151

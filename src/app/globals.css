@@ -1,50 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+
 * {
   padding: 0;
   margin: 0;
   border: 0;
-  box-shadow: 0;
-  font-family: 'Rajdhani', sans-serif;
+  list-style: none;
+  text-decoration: none !important;
+  box-sizing: border-box;
+  /* font-family: 'Sofia Sans', sans-serif; */
+}
+
+/** Color Variables */
+:root {
+  --icon: #374151;
+  --primary: #363aed;
+  --secondary: #37d279;
+  --tertiary: #ffbe46;
+  --bg-1: #f9f9fe;
+  --bg-2: #f5f5fe;
+  --btn-bg: #efeffd;
+  --border: #c2c7d0;
+  --neutral-700: #243757;
+  --primary-light: #ececfd;
+  --secondary-light: #eafbf1;
+  --secondary-500: #22804a;
+  --dark: #091e42;
+  --rt-color-white: #fff;
+  --rt-color-dark: #222;
 }
 
 /* container responsive
  */
 @media (min-width: 576px) and (max-width: 767px) {
   .container {
-    max-width: 540px;
+    max-width: 540px
   }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
   .container {
-    max-width: 720px;
+    max-width: 720px
   }
 }
+
 @media (min-width: 992px) and (max-width: 1199px) {
   .container {
-    max-width: 960px;
+    max-width: 960px
   }
 }
+
 @media (min-width: 1200px) and (max-width: 1399px) {
   .container {
-    max-width: 1140px;
+    max-width: 1140px
   }
 }
+
 @media (min-width: 1400px) and (max-width: 1599px) {
   .container {
-    max-width: 1320px;
+    max-width: 1320px
   }
 }
+
 @media (min-width: 1600px) and (max-width: 1799px) {
   .container {
-    max-width: 1600px;
+    max-width: 1600px
   }
 }
+
 @media (min-width: 1800px) {
   .container {
-    max-width: 1800px;
+    max-width: 1800px
   }
 }
 
@@ -52,7 +82,7 @@
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 1320px;
+  width: 1320px !important;
   padding-left: 12px;
   padding-right: 12px;
 }

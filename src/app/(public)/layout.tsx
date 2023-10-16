@@ -1,4 +1,4 @@
-import Navbar from '@/components/ui/Navbar';
+import DefaultHeader from '@/components/view/Header/DefaultHeader';
 
 export default function PublicLayout({
   children,
@@ -7,7 +7,7 @@ export default function PublicLayout({
 }) {
   return (
     <>
-      <Navbar />
+      <DefaultHeader />
       <div className="min-h-[calc(100vh-64px)]">{children}</div>
     </>
   );

@@ -1,12 +1,9 @@
-import { Button } from 'antd';
+import DefaultHeader from '@/components/view/Header/DefaultHeader';
 
 export default function Home() {
   return (
     <>
-      <h1 className="font-bold">aaa</h1>
-      <Button type="primary">Button</Button>
-
-      <h1>aaa</h1>
+      <DefaultHeader />
     </>
   );
 }
