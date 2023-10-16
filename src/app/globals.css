@@ -1,3 +1,58 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-shadow: 0;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+/* container responsive
+ */
+@media (min-width: 576px) and (max-width: 767px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1400px) and (max-width: 1599px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+@media (min-width: 1600px) and (max-width: 1799px) {
+  .container {
+    max-width: 1600px;
+  }
+}
+@media (min-width: 1800px) {
+  .container {
+    max-width: 1800px;
+  }
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1320px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
