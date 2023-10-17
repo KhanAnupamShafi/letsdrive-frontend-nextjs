@@ -1,12 +1,27 @@
+import { registerSchema } from '@/shared/schema';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'antd';
-
+import { useForm } from 'react-hook-form';
 interface RegisterProps {
   setCurrentView: React.Dispatch<React.SetStateAction<string>>;
 }
+
 const Register: React.FC<RegisterProps> = ({ setCurrentView }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(registerSchema),
+  });
+  const onSubmitHandler = (data: Record<string, unknown>) => {
+    console.log({ data });
+    reset();
+  };
   return (
     <div className="bg-white rounded-2xl p-4 md:p-6 lg:p-8">
-      <form action="#">
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
         <h3 className="mb-4 h3"> Let’s Get Started! </h3>
         <p className="mb-10">
           Please enter your email address to join us
@@ -19,6 +34,7 @@ const Register: React.FC<RegisterProps> = ({ setCurrentView }) => {
               First Name
             </label>
             <input
+              {...register('firstName')}
               className="w-full bg-[var(--bg-1)] border focus:outline-none rounded-full py-3 px-5"
               placeholder="Enter First Name"
               id="first-name"
@@ -32,6 +48,7 @@ const Register: React.FC<RegisterProps> = ({ setCurrentView }) => {
               Last Name
             </label>
             <input
+              {...register('lastName')}
               className="w-full bg-[var(--bg-1)] border focus:outline-none rounded-full py-3 px-5"
               placeholder="Enter Last Name"
               id="last-name"
@@ -45,11 +62,17 @@ const Register: React.FC<RegisterProps> = ({ setCurrentView }) => {
               Enter Your Email ID
             </label>
             <input
-              className="w-full bg-[var(--bg-1)] border focus:outline-none rounded-full py-3 px-5"
+              {...register('email')}
+              className={`w-full bg-[var(--bg-1)] border focus:outline-none rounded-full py-3 px-5 ${
+                errors.email && 'border-solid border-red-500'
+              }`}
               placeholder="Enter Your Email"
               id="enter-email"
               type="text"
             />
+            <p className="text-xs text-orange-900 px-5">
+              {errors.email?.message}
+            </p>
           </div>
           <div className="col-span-12">
             <label
@@ -58,11 +81,17 @@ const Register: React.FC<RegisterProps> = ({ setCurrentView }) => {
               Enter Your Password
             </label>
             <input
-              className="w-full bg-[var(--bg-1)] border focus:outline-none rounded-full py-3 px-5"
+              {...register('password')}
+              className={`w-full bg-[var(--bg-1)] border focus:outline-none rounded-full py-3 px-5 ${
+                errors.password && 'border-solid border-red-500'
+              }`}
               placeholder="Enter Your Password"
               id="enter-password"
               type="text"
             />
+            <p className="text-xs text-orange-900 px-5">
+              {errors.password?.message}
+            </p>
           </div>
           <div
             className="col-span-12"
@@ -77,11 +106,11 @@ const Register: React.FC<RegisterProps> = ({ setCurrentView }) => {
             </p>
           </div>
           <div className="col-span-12">
-            <a
-              className="link inline-flex items-center gap-2 py-3 px-6 rounded-full bg-primary text-white :bg-primary-400 hover:text-white font-semibold"
-              href="#">
+            <button
+              type="submit"
+              className="link inline-flex items-center gap-2 py-3 px-6 rounded-full bg-primary text-white :bg-primary-400 hover:text-white font-semibold">
               <span className="inline-block"> Signup </span>
-            </a>
+            </button>
           </div>
         </div>
       </form>

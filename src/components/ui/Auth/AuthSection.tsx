@@ -7,20 +7,18 @@ import { useState } from 'react';
 const AuthSection = () => {
   const [currentView, setCurrentView] = useState('register');
   const toggleView = () => {
-    if (currentView === 'register') {
-      setCurrentView('signin');
-    } else {
-      setCurrentView('register');
-    }
+    setCurrentView((prevView) =>
+      prevView === 'register' ? 'signin' : 'register'
+    );
   };
 
   return (
     <>
       <div className="col-span-2 lg:col-span-1">
         {currentView === 'register' ? (
-          <Register setCurrentView={setCurrentView} />
+          <Register setCurrentView={toggleView} />
         ) : (
-          <Login setCurrentView={setCurrentView} />
+          <Login setCurrentView={toggleView} />
         )}
       </div>
     </>

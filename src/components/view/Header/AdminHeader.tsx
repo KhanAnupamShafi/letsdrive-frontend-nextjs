@@ -1,9 +1,9 @@
-import Navbar from '@/components/ui/Navbar/Navbar';
+import AdminNav from '@/components/ui/Navbar/AdminNav';
 
 const AdminHeader = () => {
   return (
     <>
-      <Navbar />
+      <AdminNav />
     </>
   );
 };
