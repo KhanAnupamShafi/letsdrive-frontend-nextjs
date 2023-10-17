@@ -1,10 +1,12 @@
 'use client';
 import { Button } from 'antd';
 import { MailOpen, MapPin, PhoneCall } from 'lucide-react';
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import Logo from '../../../assets/Logo.svg';
 
-const TopHeader = () => {
+const TopHeader = ({ session }: { session: boolean }) => {
+  // const { data: session, status } = useSession();
   return (
     <div className="bg-[var(--bg-1)] border-b-2 border-[var(--border)] font-sans">
       <div className="container mx-auto flex justify-between py-3 lg:py-5 px-2 gap-1 ">
@@ -56,12 +58,23 @@ const TopHeader = () => {
             </div>
           </div>
         </div>
-
-        <Link
-          className="btn-primary-lg hidden md:block"
-          href="/login">
-          <Button type="primary">Sign Up</Button>
-        </Link>
+        {session ? (
+          <span className="hidden md:flex items-center">
+            <Button
+              size="small"
+              type="primary"
+              danger
+              onClick={() => {
+                signOut();
+              }}>
+              Sign Out
+            </Button>
+          </span>
+        ) : (
+          <Link className="hidden md:block" href="/login">
+            <Button type="primary">Sign Up</Button>
+          </Link>
+        )}
       </div>
     </div>
   );

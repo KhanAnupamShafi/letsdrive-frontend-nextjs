@@ -1,6 +1,8 @@
 import { loginSchema } from '@/shared/schema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
 interface RegisterProps {
@@ -15,9 +17,30 @@ const Login: React.FC<RegisterProps> = ({ setCurrentView }) => {
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
-  const onSubmitHandler = (data: Record<string, unknown>) => {
-    console.log({ data });
-    reset();
+
+  const router = useRouter();
+
+  const onSubmitHandler = async (data: Record<string, unknown>) => {
+    const { email, password } = data;
+
+    try {
+      const result = await signIn('ld-next-auth', {
+        email: email,
+        password: password,
+        redirect: false,
+        // callbackUrl: "/",
+      });
+
+      if (result?.ok && !result.error) {
+        message.success('Login successful', 2.5);
+        router.push('/');
+        reset();
+      } else {
+        message.error('Login failed: ' + result?.error, 2.5);
+      }
+    } catch (error) {
+      message.error('An error occurred: ' + error, 2.5);
+    }
   };
   return (
     <div className="bg-white rounded-2xl p-4 md:p-6 lg:p-8">

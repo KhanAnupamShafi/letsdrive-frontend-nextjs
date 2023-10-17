@@ -2,23 +2,16 @@
 import AntContents from '@/components/Content/Content';
 import AntBreadCrumb from '@/shared/breadCrumb';
 import { ROLE } from '@/shared/role';
-import { Layout, Menu, Space } from 'antd';
-import Title from 'antd/es/typography/Title';
-import Link from 'next/link';
+import { Layout } from 'antd';
 import { usePathname } from 'next/navigation';
+import AdminMenu from './AdminMenu';
 type SidebarProps = {
   children: React.ReactNode;
-  items: { key: string; label: string; href: string }[];
 };
-const Sidebar = ({ children, items }: SidebarProps) => {
+const Sidebar = ({ children }: SidebarProps) => {
   const { Header, Sider, Footer } = Layout;
   const role = ROLE.ADMIN;
   const pathname = usePathname();
-  const getSelectedKey = () => {
-    return items?.find((item) => item.href === pathname)?.key || '';
-  };
-
-  console.log(items);
   let tempo = 'admin';
 
   return (
@@ -44,8 +37,8 @@ const Sidebar = ({ children, items }: SidebarProps) => {
             alignItems: 'center',
           }}></Header>
         <div className="demo-logo-vertical" />
-
-        <Menu
+        <AdminMenu />
+        {/* <Menu
           className="bg-white p-0 "
           disabledOverflow
           color="red"
@@ -64,7 +57,7 @@ const Sidebar = ({ children, items }: SidebarProps) => {
                   : ''
               } text-base`}>
               <Space align="center">
-                {/* <span className="flex items-center">{item.icon}</span> */}
+                <span className="flex items-center">{item.icon}</span>
                 <Link
                   className={`${
                     pathname === item.href
@@ -77,21 +70,10 @@ const Sidebar = ({ children, items }: SidebarProps) => {
               </Space>
             </Menu.Item>
           ))}
-        </Menu>
+        </Menu> */}
       </Sider>
       <Layout className="bg-[#EFF1F4]">
-        <AntBreadCrumb
-          items={[
-            {
-              label: `${tempo}`,
-              link: `/${tempo}`,
-            },
-            {
-              label: 'user',
-              link: `/${tempo}/user`,
-            },
-          ]}
-        />
+        <AntBreadCrumb />
         <AntContents>{children}</AntContents>
         <Footer
           style={{

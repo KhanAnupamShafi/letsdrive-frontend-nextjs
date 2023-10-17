@@ -1,7 +1,4 @@
-import StyledComponentsRegistry from '@/lib/AntdRegistry';
-import { Providers } from '@/lib/providers';
-import theme from '@/theme/themeConfig';
-import { ConfigProvider } from 'antd';
+import AuthSessionProvider from '@/lib/AuthProvider';
 import type { Metadata } from 'next';
 import './globals.css';
 
@@ -17,13 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Providers>
-        <body className="font-sans text-base">
-          <StyledComponentsRegistry>
-            <ConfigProvider theme={theme}>{children}</ConfigProvider>
-          </StyledComponentsRegistry>
-        </body>
-      </Providers>
+      <AuthSessionProvider>{children}</AuthSessionProvider>
     </html>
   );
 }
+
+// troubleshoot : SessionProvider:  'use client'
