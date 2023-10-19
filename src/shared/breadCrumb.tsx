@@ -72,7 +72,7 @@ const AntBreadCrumb = () => {
         title: <Link href="/admin/profile">Profile</Link>,
       },
     ],
-    '/admin/faculty/courses': [
+    '/admin/bookings': [
       {
         title: (
           <Link href="/admin/home" className="flex items-center">
@@ -81,10 +81,59 @@ const AntBreadCrumb = () => {
         ),
       },
       {
-        title: <Link href="/admin/faculty">faculty</Link>,
+        title: <Link href="/admin/bookings">Bookings</Link>,
+      },
+    ],
+    '/admin/car-list': [
+      {
+        title: (
+          <Link href="/admin/home" className="flex items-center">
+            <HomeIcon color="#091e42" size={18} />
+          </Link>
+        ),
       },
       {
-        title: <Link href="/admin/faculty/courses">courses</Link>,
+        title: <Link href="/admin/car-list">Car List</Link>,
+      },
+    ],
+    '/admin/services': [
+      {
+        title: (
+          <Link href="/admin/home" className="flex items-center">
+            <HomeIcon color="#091e42" size={18} />
+          </Link>
+        ),
+      },
+      {
+        title: <Link href="/admin/services">All Services</Link>,
+      },
+    ],
+    '/admin/manage-users': [
+      {
+        title: (
+          <Link href="/admin/home" className="flex items-center">
+            <HomeIcon color="#091e42" size={18} />
+          </Link>
+        ),
+      },
+      {
+        title: (
+          <Link href="/admin/manage-users">Manage User/Admin</Link>
+        ),
+      },
+    ],
+    '/admin/manage-contents': [
+      {
+        title: (
+          <Link href="/admin/home" className="flex items-center">
+            <HomeIcon color="#091e42" size={18} />
+          </Link>
+        ),
+      },
+      {
+        title: (
+          <Link href="/admin/manage-contents">Manage Content</Link>
+        ),
       },
     ],
     // Add more routes and breadcrumb items as needed

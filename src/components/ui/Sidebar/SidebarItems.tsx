@@ -4,6 +4,8 @@ import {
   HelpingHand,
   LucideHome,
   MousePointer,
+  PenBox,
+  PenLine,
   Settings2,
   User2,
 } from 'lucide-react';
@@ -17,10 +19,17 @@ export const items: MenuProps['items'] = [
     key: '/admin/home',
     icon: <LucideHome size={18} />,
   },
+  {
+    label: (
+      <CustomMenuItem label="My-profile" href="/admin/profile" />
+    ),
+    key: '/admin/profile',
+    icon: <User2 size={18} />,
+  },
 
   {
     label: 'Manage Services',
-    key: 'Services',
+    key: 'services',
     icon: <Settings2 size={18} />,
     children: [
       {
@@ -54,13 +63,41 @@ export const items: MenuProps['items'] = [
     ],
   },
   {
-    label: (
-      <CustomMenuItem
-        label="Dashboard- profile"
-        href="/admin/profile"
-      />
-    ),
-    key: '/admin/profile',
-    icon: <User2 size={18} />,
+    label: 'Manage Contents',
+    key: 'contents',
+    icon: <PenLine size={18} />,
+    children: [
+      {
+        label: (
+          <CustomMenuItem
+            label="All Contents"
+            href="/admin/manage-contents"
+          />
+        ),
+        icon: <MousePointer size={18} />,
+
+        key: 'contents:2',
+      },
+      {
+        label: (
+          <CustomMenuItem
+            label="Manage Blogs"
+            href="/admin/manage-content/blogs"
+          />
+        ),
+        key: 'contents:3',
+        icon: <PenBox size={18} />,
+      },
+      {
+        label: (
+          <CustomMenuItem
+            label="FAQ section"
+            href="/admin/manage-content/faq"
+          />
+        ),
+        key: 'contents:4',
+        icon: <CarTaxiFront size={18} />,
+      },
+    ],
   },
 ];
