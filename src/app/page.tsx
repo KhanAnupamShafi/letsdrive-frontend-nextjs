@@ -12,7 +12,7 @@ export default async function Home() {
     next: {
       revalidate: 24 * 60 * 60, // time based revalidation
       //on demand revalidation
-      tags: ['all-services'],
+      tags: ['services'],
     },
   });
   const { data } = await res.json();

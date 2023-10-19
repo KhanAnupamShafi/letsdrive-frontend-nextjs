@@ -1,3 +1,4 @@
+import AntContents from '@/components/ui/Content/Content';
 import MyTable from '@/components/ui/Table/AntTable';
 import AdminTable from '@/components/view/Admin/AdminTable';
 import SearchFilter from '@/components/view/Admin/SearchFilter';
@@ -11,10 +12,12 @@ const BookingManagementPage = async ({
 }) => {
   const data: any = await getAllBookings(searchParams);
   return (
-    <AdminTable title="All Bookings">
-      <SearchFilter />
-      <MyTable columns={columns} data={data} />
-    </AdminTable>
+    <AntContents>
+      <AdminTable title="All Bookings">
+        <SearchFilter />
+        <MyTable columns={columns} data={data} />
+      </AdminTable>
+    </AntContents>
   );
 };
 

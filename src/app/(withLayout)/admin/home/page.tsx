@@ -1,4 +1,4 @@
-import AntContents from '@/components/Content/Content';
+import AntContents from '@/components/ui/Content/Content';
 
 const DashboardPage = () => {
   return (

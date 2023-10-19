@@ -32,7 +32,7 @@ const AdminMenu: React.FC = () => {
     return () => {
       window.removeEventListener('popstate', updateCurrentPathname);
     };
-  }, [pathname]);
+  }, []);
 
   return (
     <>

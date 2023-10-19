@@ -1,5 +1,5 @@
 'use client';
-import AntContents from '@/components/Content/Content';
+import AntContents from '@/components/ui/Content/Content';
 import AntBreadCrumb from '@/shared/breadCrumb';
 import { Avatar, Badge, Flex, Layout, Space } from 'antd';
 import { MailOpen, User } from 'lucide-react';
