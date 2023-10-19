@@ -1,57 +1,11 @@
+'use client';
 import type { MenuProps, MenuTheme } from 'antd';
 import { Flex, Menu, Switch } from 'antd';
-import { LucideHome, Settings2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import CustomMenuItem from './CustomMenuItem';
+import { items } from './SidebarItems';
 
 const { SubMenu } = Menu;
-
-const items: MenuProps['items'] = [
-  {
-    label: (
-      <CustomMenuItem label="Dashboard- Home" href="/admin/home" />
-    ),
-    key: '/admin/home',
-    icon: <LucideHome size={18} />,
-  },
-
-  {
-    label: 'Navigation Three - Submenu',
-    key: 'SubMenu',
-    icon: <Settings2 size={18} />,
-    children: [
-      {
-        label: 'Option 2',
-        key: 'setting:2',
-      },
-      {
-        type: 'group',
-        label: 'Item 2',
-        children: [
-          {
-            label: 'Option 3',
-            key: 'setting:3',
-          },
-          {
-            label: 'Option 4',
-            key: 'setting:4',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: (
-      <CustomMenuItem
-        label="Dashboard- profile"
-        href="/admin/profile"
-      />
-    ),
-    key: '/admin/profile',
-    icon: <Settings2 size={18} />,
-  },
-];
 
 const AdminMenu: React.FC = () => {
   const [theme, setTheme] = useState<MenuTheme>('light');
@@ -82,27 +36,32 @@ const AdminMenu: React.FC = () => {
 
   return (
     <>
-      <br />
-      <Menu
-        disabledOverflow
-        theme={theme}
-        onClick={onClick}
-        // style={{ minHeight: 'calc(100vh - 300px)' }}
-        defaultOpenKeys={current === pathname ? [current] : []}
-        selectedKeys={[current]}
-        mode="inline"
-        items={items as MenuProps['items']} // Type assertion to match the type
-      />
-      <br />
-      <Flex gap="middle" align="flex-end" justify={'center'}>
+      <Flex
+        className="bg-tertiary"
+        gap="0"
+        vertical
+        align="center"
+        justify={'center'}>
         <Switch
-          className="mb-0"
+          className="mb-0 "
           checked={theme === 'dark'}
           onChange={changeTheme}
           checkedChildren="Light"
           unCheckedChildren="Dark"
         />
+        <Menu
+          className="min-h-[100vh]"
+          disabledOverflow
+          theme={theme}
+          onClick={onClick}
+          defaultOpenKeys={current === pathname ? [current] : []}
+          selectedKeys={[current]}
+          mode="inline"
+          items={items as MenuProps['items']} // Type assertion to match the type
+        />
       </Flex>
+
+      <br />
     </>
   );
 };

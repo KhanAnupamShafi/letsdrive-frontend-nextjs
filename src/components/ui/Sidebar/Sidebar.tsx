@@ -20,7 +20,8 @@ const Sidebar = ({ children }: SidebarProps) => {
   return (
     <Layout className="flex ">
       <Sider
-        className="min-h-[100vh] bg-white"
+        width={300}
+        className="min-h-[100vh] bg-white "
         breakpoint="lg"
         collapsedWidth="0"
         onBreakpoint={(broken) => {
@@ -30,7 +31,7 @@ const Sidebar = ({ children }: SidebarProps) => {
           // console.log(collapsed, type);
         }}>
         <Header
-          className="shadow-md bg-white text-center"
+          className="shadow-md bg-white text-center hidden lg:block"
           style={{
             zIndex: 1,
             width: '100%',

@@ -1,9 +1,9 @@
 'use server';
 
-export const fetchAvailable = async (
+export const getAllBookings = async (
   query: Record<string, unknown>
-) => {
-  const queryParams = ['serviceType', 'bookingDate'];
+): Promise<any> => {
+  const queryParams = ['searchTerm', 'status'];
   const filteredQuery = Object.keys(query).reduce((acc, key) => {
     if (queryParams.includes(key)) {
       acc[key] = query[key];
@@ -16,16 +16,17 @@ export const fetchAvailable = async (
       return acc;
     }, [] as string[])
     .join('&');
-  // console.log(queryString, ' inside fetch available');
+
   const res = await fetch(
-    `http://localhost:5000/api/v1/car-packages/available?${queryString}`,
+    `http://localhost:5000/api/v1/bookings?${queryString}`,
     {
       headers: {
         'Content-Type': 'application/json',
       },
+      // cache: "no-cache"
       next: {
         revalidate: 24 * 60 * 60,
-        tags: ['car-packages'],
+        tags: ['bookings'],
       },
     }
   );
