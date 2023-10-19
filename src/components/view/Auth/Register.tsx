@@ -16,7 +16,7 @@ const Register: React.FC<RegisterProps> = ({ setCurrentView }) => {
     resolver: yupResolver(registerSchema),
   });
   const onSubmitHandler = (data: Record<string, unknown>) => {
-    console.log({ data });
+    // console.log({ data });
     reset();
   };
   return (

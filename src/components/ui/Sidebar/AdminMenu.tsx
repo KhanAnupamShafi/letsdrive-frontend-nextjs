@@ -56,7 +56,6 @@ const items: MenuProps['items'] = [
 const AdminMenu: React.FC = () => {
   const [theme, setTheme] = useState<MenuTheme>('light');
   const [current, setCurrent] = useState(usePathname());
-  console.log(items);
   const changeTheme = (value: boolean) => {
     setTheme(value ? 'dark' : 'light');
   };

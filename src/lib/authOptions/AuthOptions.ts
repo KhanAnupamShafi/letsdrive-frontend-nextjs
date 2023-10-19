@@ -1,3 +1,4 @@
+import { baseUrl } from '@/app/page';
 import { jwtHelpers } from '@/helpers/jwtHelper';
 import { getNewAccessToken } from '@/services/getNewAccessToken';
 import type { NextAuthOptions } from 'next-auth';
@@ -25,14 +26,11 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         try {
-          const res = await fetch(
-            `http://localhost:5000/api/v1/auth/login`,
-            {
-              method: 'POST',
-              body: JSON.stringify(credentials),
-              headers: { 'Content-Type': 'application/json' },
-            }
-          );
+          const res = await fetch(`${baseUrl}/auth/login`, {
+            method: 'POST',
+            body: JSON.stringify(credentials),
+            headers: { 'Content-Type': 'application/json' },
+          });
           const { data } = await res.json();
           const verifiedToken: any = jwtHelpers.verifyToken(
             data?.accessToken,
@@ -46,7 +44,7 @@ export const authOptions: NextAuthOptions = {
             };
           }
         } catch (error: any) {
-          console.log(error);
+          // console.log(error);
           throw new Error(error.message);
         }
       },

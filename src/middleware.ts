@@ -2,12 +2,14 @@ import { getToken } from 'next-auth/jwt';
 import { NextResponse, type NextRequest } from 'next/server';
 import { ROLE } from './shared/role';
 
+const URI = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
+// console.log(URI, 'uri');
 // This function can be marked `async` if using `await` inside
 const hybridRoutes = ['/', '/login'];
 const userRoutes = ['/', '/profile', '/my-bookings'];
 const rolesRedirect: Record<string, unknown> = {
-  admin: 'http://localhost:3000/admin/home',
-  user: 'http://localhost:3000',
+  admin: `${URI}/admin/home`,
+  user: `${URI}`,
 };
 export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
@@ -17,13 +19,13 @@ export async function middleware(request: NextRequest) {
   // );
   const { pathname } = request.nextUrl;
   if (!token) {
-    console.log(pathname, 'sorry no token');
+    // console.log(pathname, 'sorry no token');
 
     if (hybridRoutes.includes(pathname)) {
       return NextResponse.next();
     }
 
-    return NextResponse.redirect('http://localhost:3000/login');
+    return NextResponse.redirect(`${URI}/login`);
   }
 
   const role = token?.role as string;
@@ -33,7 +35,7 @@ export async function middleware(request: NextRequest) {
     (role === ROLE.SUPER_ADMIN && pathname.startsWith('/admin')) ||
     (role === ROLE.USER && userRoutes.includes(pathname))
   ) {
-    console.log('next');
+    // console.log('next');
     return NextResponse.next();
   }
 
@@ -41,7 +43,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(rolesRedirect[role] as string);
   }
 
-  return NextResponse.redirect('http://localhost:3000');
+  return NextResponse.redirect(`${URI}`);
 }
 
 // See "Matching Paths" below to learn more

@@ -7,11 +7,40 @@ import {
   Menu,
   UserCircle2,
 } from 'lucide-react';
+import { useEffect, useState } from 'react';
 function Navbar() {
+  const [scrolling, setScrolling] = useState(false); // State to track scrolling
+  const [className, setClassName] = useState(
+    'z-30 border-y sticky top-0 duration-300 lg:text-2xl'
+  );
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 99) {
+        setScrolling(true);
+        setClassName(
+          'z-30 border-y sticky hidden lg:block top-0 z-50 shadow-md bg-white bg-opacity-70 backdrop-blur border-none duration-300'
+        );
+      } else {
+        setScrolling(false);
+        setClassName(
+          'z-30 border-y sticky top-0 duration-300 lg:text-2xl'
+        );
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   //z-30 border-y sticky hidden lg:block top-0 z-50 shadow-md bg-white bg-opacity-70 backdrop-blur border-none duration-300
   return (
     <>
-      <header className="z-30 border-y sticky  top-0 true duration-300 lg:text-2xl">
+      <header className={className}>
         <div className="container  flex justify-between items-center relative px-3 py-2 ">
           <div className="flex items-center gap-2 lg:order-2">
             <div className="z-10 w-[115px] text-left">

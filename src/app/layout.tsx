@@ -1,4 +1,7 @@
+import StyledComponentsRegistry from '@/lib/AntdRegistry';
 import AuthSessionProvider from '@/lib/AuthProvider';
+import theme from '@/theme/themeConfig';
+import { ConfigProvider } from 'antd';
 import type { Metadata } from 'next';
 import './globals.css';
 
@@ -14,7 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <AuthSessionProvider>{children}</AuthSessionProvider>
+      <StyledComponentsRegistry>
+        <ConfigProvider theme={theme}>
+          <AuthSessionProvider>{children}</AuthSessionProvider>
+        </ConfigProvider>
+      </StyledComponentsRegistry>
     </html>
   );
 }

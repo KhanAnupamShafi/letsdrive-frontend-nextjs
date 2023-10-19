@@ -1,8 +1,9 @@
 'use client';
 import AntContents from '@/components/Content/Content';
 import AntBreadCrumb from '@/shared/breadCrumb';
-import { ROLE } from '@/shared/role';
-import { Layout } from 'antd';
+import { Avatar, Badge, Flex, Layout, Space } from 'antd';
+import { MailOpen, User } from 'lucide-react';
+import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import AdminMenu from './AdminMenu';
 type SidebarProps = {
@@ -10,7 +11,9 @@ type SidebarProps = {
 };
 const Sidebar = ({ children }: SidebarProps) => {
   const { Header, Sider, Footer } = Layout;
-  const role = ROLE.ADMIN;
+  const { data: session } = useSession();
+  console.log(session);
+
   const pathname = usePathname();
   let tempo = 'admin';
 
@@ -21,21 +24,25 @@ const Sidebar = ({ children }: SidebarProps) => {
         breakpoint="lg"
         collapsedWidth="0"
         onBreakpoint={(broken) => {
-          console.log(broken);
+          // console.log(broken);
         }}
         onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
+          // console.log(collapsed, type);
         }}>
         <Header
-          className="shadow-md bg-white"
+          className="shadow-md bg-white text-center"
           style={{
-            position: 'sticky',
-            top: 0,
             zIndex: 1,
             width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-          }}></Header>
+          }}>
+          {' '}
+          <span>
+            <Badge dot color="green" className="leading-none	mr-2">
+              <Avatar shape="square" icon={<User />} />
+            </Badge>
+            <span>{session?.role}</span>
+          </span>
+        </Header>
         <div className="demo-logo-vertical" />
         <AdminMenu />
         {/* <Menu
@@ -72,7 +79,26 @@ const Sidebar = ({ children }: SidebarProps) => {
           ))}
         </Menu> */}
       </Sider>
+
       <Layout className="bg-[#EFF1F4]">
+        <Header
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            background: '#fcfdff',
+            justifyContent: 'end',
+          }}>
+          {' '}
+          <Space className="mr-0" direction="horizontal" size={24}>
+            <h4 className="text-xl font-semibold">
+              {session?.fullName}
+            </h4>
+            <Flex align="center" gap={10}>
+              <MailOpen />
+              <p className=""> {session?.email}</p>
+            </Flex>
+          </Space>
+        </Header>
         <AntBreadCrumb />
         <AntContents>{children}</AntContents>
         <Footer
