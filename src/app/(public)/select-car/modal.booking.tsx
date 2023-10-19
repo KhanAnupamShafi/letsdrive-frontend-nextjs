@@ -115,17 +115,14 @@ const ModalBooking = ({
     };
 
     try {
-      const res = await fetch(
-        `http://localhost:5000/api/v1/bookings/book-car`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload),
-          cache: 'no-cache',
-        }
-      );
+      const res = await fetch(`${baseUrl}/bookings/book-car`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+        cache: 'no-cache',
+      });
       const response = await res.json();
       messageApi.open({
         key: 'updatable',

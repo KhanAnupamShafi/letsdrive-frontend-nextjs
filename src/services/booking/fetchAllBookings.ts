@@ -1,5 +1,7 @@
 'use server';
 
+import { baseUrl } from '@/app/page';
+
 export const getAllBookings = async (
   query: Record<string, unknown>
 ): Promise<any> => {
@@ -17,19 +19,16 @@ export const getAllBookings = async (
     }, [] as string[])
     .join('&');
 
-  const res = await fetch(
-    `http://localhost:5000/api/v1/bookings?${queryString}`,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      // cache: "no-cache"
-      next: {
-        revalidate: 24 * 60 * 60,
-        tags: ['bookings'],
-      },
-    }
-  );
+  const res = await fetch(`${baseUrl}/bookings?${queryString}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // cache: "no-cache"
+    next: {
+      revalidate: 24 * 60 * 60,
+      tags: ['bookings'],
+    },
+  });
   const { data } = await res.json();
   if (res.ok && data) {
     return data;

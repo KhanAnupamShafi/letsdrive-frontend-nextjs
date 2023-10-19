@@ -1,5 +1,7 @@
 'use server';
 
+import { baseUrl } from '@/app/page';
+
 export const fetchAvailable = async (
   query: Record<string, unknown>
 ) => {
@@ -18,7 +20,7 @@ export const fetchAvailable = async (
     .join('&');
   // console.log(queryString, ' inside fetch available');
   const res = await fetch(
-    `http://localhost:5000/api/v1/car-packages/available?${queryString}`,
+    `${baseUrl}/car-packages/available?${queryString}`,
     {
       headers: {
         'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 'use client';
+import { baseUrl } from '@/app/page';
 import { getAllServiceNames } from '@/services/car/fetchCarServiceName';
 import {
   Button,
@@ -68,17 +69,14 @@ const CarModal = ({ open, setOpen }: ModalCarProps) => {
       };
 
       try {
-        const res = await fetch(
-          `http://localhost:5000/api/v1/car-packages/create`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-            cache: 'no-cache',
-          }
-        );
+        const res = await fetch(`${baseUrl}/car-packages/create`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+          cache: 'no-cache',
+        });
         const response = await res.json();
         messageApi.open({
           key: 'updatable',
