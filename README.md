@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://codevoweb.com/wp-content/uploads/2023/03/Setup-and-Use-NextAuth.js-in-Next.js-13-App-Directory.webp?ezimgfmt=ng:webp/ngcb1).
 
-## Getting Started
+![How to Setup Redux Toolkit in Next.js 13 App Directory](https://codevoweb.com/wp-content/uploads/2023/03/Setup-and-Use-NextAuth.js-in-Next.js-13-App-Directory.webp?ezimgfmt=ng:webp/ngcb1)
 
-First, run the development server:
+## 🏠 HomePage
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+[Lets-Drive-Car-Rental](https://lets-drive-car-rental-service.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<p align="center" style="margin-top: 20px">
+  <p align="center">
+  Lets Drive - Car Rental Service
+  <br>
+    <!-- <a href="https://documenso.com"><strong>Learn more »</strong></a>
+    <br />
+    <br />
+    <a href="https://documen.so/discord">Discord</a>
+    ·
+    <a href="https://documenso.com">Website</a>   -->
+  </p>
+</p>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<p align="center">
+   <a href="https://documen.so/discord"><img src="https://img.shields.io/badge/Discord-documen.so/discord-%235865F2" alt="Join Documenso on Discord"></a>
+   <a href="https://github.com/documenso/documenso/stargazers"><img src="https://img.shields.io/github/stars/documenso/documenso" alt="Github Stars"></a>
+   <a href="https://github.com/documenso/documenso/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-AGPLv3-purple" alt="License"></a>
+   <a href="https://github.com/documenso/documenso/pulse"><img src="https://img.shields.io/github/commit-activity/m/documenso/documenso" alt="Commits-per-month"></a>
+   <a href="https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/documenso/documenso">
+   <img alt="open in devcontainer" src="https://img.shields.io/static/v1?label=Dev%20Containers&message=Enabled&color=blue&logo=visualstudiocode" />
+   </a>
+   <a href="code_of_conduct.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg" alt="Contributor Covenant"></a>
+</p>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+>
 
-## Learn More
+## About this project
 
-To learn more about Next.js, take a look at the following resources:
+A FullStack project building a relational database-driven car rental service. Customers reserve cars based on dates and locations, while administrators manage users and services...
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- 🔒 [Auth.js](https://authjs.dev/)
+- 🧘‍♂️ [Zod](https://zod.dev/)
+- 💻 [Typescript](https://www.typescriptlang.org/) - Language
+- 🚀 [Next.js](https://nextjs.org/) - Framework
+- ⚛️ [React](https://reactjs.org/) - Frontend Library
+- 📚 [Prisma](https://prisma.io/) - ORM
+- 🎨 [TailwindCSS](https://tailwindcss.com/) - CSS
+- [antd/ui](https://ui.and.com/) - Component Library
+- [NextAuth.js](https://next-auth.js.org/) - Authentication
+- [Stripe](https://stripe.com/) - Payments
+- [Vercel](https://vercel.com) - Hosting
 
-## Deploy on Vercel
+### Database
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![Deploy to Render](https://res.cloudinary.com/practicaldev/image/fetch/s--bQKr-Fki--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/d28zk5ipfotdh7oiljng.png)
+Database management is made more efficient with Prisma, our Object-Relational Mapping (ORM) tool. We style our user interface with TailwindCSS, a utility-first CSS framework, and accelerate development with a variety of pre-built UI components from Ant Design (antd).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/documenso/documenso)
+
+## Repo Activity
+
+![Alt](https://repobeats.axiom.co/api/embed/9a4ce299fc52a4e48328fed4fb9a358337fb20a5.svg 'Repobeats analytics image')

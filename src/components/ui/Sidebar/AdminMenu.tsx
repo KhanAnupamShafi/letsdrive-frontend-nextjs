@@ -1,6 +1,8 @@
 'use client';
 import type { MenuProps, MenuTheme } from 'antd';
-import { Flex, Menu, Switch } from 'antd';
+import { Button, Flex, Menu, Switch } from 'antd';
+import { signOut, useSession } from 'next-auth/react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { items } from './SidebarItems';
@@ -10,6 +12,8 @@ const { SubMenu } = Menu;
 const AdminMenu: React.FC = () => {
   const [theme, setTheme] = useState<MenuTheme>('light');
   const [current, setCurrent] = useState(usePathname());
+  const { data: session } = useSession();
+
   const changeTheme = (value: boolean) => {
     setTheme(value ? 'dark' : 'light');
   };
@@ -38,17 +42,37 @@ const AdminMenu: React.FC = () => {
     <>
       <Flex
         className="bg-tertiary"
-        gap="0"
+        gap="10"
         vertical
         align="center"
         justify={'center'}>
-        <Switch
-          className="mb-0 "
-          checked={theme === 'dark'}
-          onChange={changeTheme}
-          checkedChildren="Light"
-          unCheckedChildren="Dark"
-        />
+        <div className="flex pt-2 flex-col gap-10 h-[100px]">
+          {session ? (
+            <span className="hidden md:flex items-center">
+              <Button
+                size="small"
+                type="primary"
+                danger
+                onClick={() => {
+                  signOut();
+                }}>
+                Sign Out
+              </Button>
+            </span>
+          ) : (
+            <Link className="hidden md:block" href="/login">
+              <Button type="primary">Sign Up</Button>
+            </Link>
+          )}
+          <Switch
+            className="mb-0 "
+            checked={theme === 'dark'}
+            onChange={changeTheme}
+            checkedChildren="Light"
+            unCheckedChildren="Dark"
+          />
+        </div>
+
         <Menu
           className="min-h-[100vh]"
           disabledOverflow
