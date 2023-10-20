@@ -1,3 +1,7 @@
+import CarRentalFaq from '@/components/ui/HomePageSections/Faq';
+import Promotion from '@/components/ui/HomePageSections/Promotion';
+import ServiceSection from '@/components/ui/HomePageSections/ServiceSection';
+import Testimonial from '@/components/ui/HomePageSections/Testimonial';
 import Landing from '@/components/ui/Landing/Landing';
 import DefaultHeader from '@/components/view/Header/DefaultHeader';
 
@@ -21,6 +25,10 @@ export default async function Home() {
     <>
       <DefaultHeader />
       <Landing data={data} />
+      <ServiceSection />
+      <Promotion />
+      <Testimonial />
+      <CarRentalFaq />
     </>
   );
 }

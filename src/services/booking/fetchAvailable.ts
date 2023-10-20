@@ -31,7 +31,7 @@ export const fetchAvailable = async (
       },
     }
   );
-  const { data } = await res.json();
+  const data = await res.json();
   if (res.ok && data) {
     return data;
   } else {

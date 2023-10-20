@@ -59,11 +59,11 @@ const Landing = ({ data }: any) => {
       <div className="container">
         <div className="text-center relative z-[2]">
           <h1 className="text-[40px] lg:text-[56px] leading-[68px] text-[var(--neutral-700)] font-semibold">
-            Easy Way to Find a Perfect <br /> Property
+            Best value car hire
           </h1>
           <p className="text-xl mx-auto max-w-[600px] text-gray-500 mt-4 md:mt-9">
-            Explore vast property listings by category with our
-            user-friendly search. Find your perfect match!
+            Explore and Book car now and get exclusive rates for your
+            trip
           </p>
           <div className="z-30 p-4 lg:p-5 rounded-xl shadow-lg bg-white flex items-center flex-wrap gap-3 relative max-w-[1060px] mx-auto mt-12">
             <div className="text-left w-full md:w-[48%] xl:w-[22%] cursor-pointer">

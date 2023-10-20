@@ -1,5 +1,6 @@
 'use client';
 
+import Footer from '@/components/ui/HomePageSections/Footer';
 import { SessionProvider } from 'next-auth/react';
 import { Providers } from './providers';
 
@@ -15,6 +16,7 @@ export default function AuthSessionProvider({
           className="font-sans text-base"
           suppressHydrationWarning={true}>
           {children}
+          <Footer />
         </body>
       </Providers>
     </SessionProvider>

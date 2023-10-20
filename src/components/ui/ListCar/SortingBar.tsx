@@ -1,11 +1,12 @@
-const SortingBar = () => {
+const SortingBar = ({ meta, length }: any) => {
+  console.log(meta);
   return (
     <div className="col-span-12">
       <div className="bg-white rounded-lg py-2 px-6 shadow-lg">
         <ul className="flex justify-between items-center flex-wrap gap-3 ">
           <li className="hidden xl:block">
             <p className="mb-0 clr-neutral-500">
-              Showing 5 of 20 Results
+              Showing {length || 0} of {meta?.meta?.total} Results
             </p>
           </li>
           <li className="flex-grow">

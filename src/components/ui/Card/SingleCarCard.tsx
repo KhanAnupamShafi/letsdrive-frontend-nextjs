@@ -1,6 +1,7 @@
 'use client';
 import ModalBooking from '@/app/(public)/select-car/modal.booking';
 import { Briefcase, PersonStanding } from 'lucide-react';
+import Image from 'next/image';
 import { useState } from 'react';
 import AntButton from '../Button/AntButton';
 
@@ -20,21 +21,20 @@ const SingleCarCard = ({ data }: { data: any }) => {
     airConditioner,
     transmission,
   } = data || {};
+  console.log(image);
+
   return (
     <div className="bg-white grid grid-cols-12 rounded-2xl p-2">
       <div className="rounded-2xl col-span-12 md:col-span-5 relative group">
         <div className="h-full">
-          <img
+          <Image
             alt="image"
             loading="lazy"
             width={270}
             height={280}
             decoding="async"
-            data-nimg={1}
             className="rounded-2xl object-cover w-full h-full"
-            srcSet="https://placewisetw.vercel.app/_next/image?url=%2Fimg%2Ffeatured-img-1.jpg&w=384&q=75  1x,https://placewisetw.vercel.app/_next/image?url=%2Fimg%2Ffeatured-img-1.jpg&w=640&q=75  2x"
-            src="https://placewisetw.vercel.app/_next/image?url=%2Fimg%2Ffeatured-img-1.jpg&w=640&q=75"
-            style={{ color: 'transparent' }}
+            src={image}
           />
         </div>
         <div
