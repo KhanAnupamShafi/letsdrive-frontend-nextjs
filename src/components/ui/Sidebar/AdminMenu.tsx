@@ -1,7 +1,7 @@
 'use client';
 import type { MenuProps, MenuTheme } from 'antd';
 import { Button, Flex, Menu, Switch } from 'antd';
-import { signOut, useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -9,13 +9,12 @@ import { items } from './SidebarItems';
 
 const { SubMenu } = Menu;
 
-const AdminMenu: React.FC = () => {
-  const [theme, setTheme] = useState<MenuTheme>('light');
+const AdminMenu = ({ authenticated }: { authenticated: boolean }) => {
+  const [theme, setTheme] = useState<MenuTheme>('dark');
   const [current, setCurrent] = useState(usePathname());
-  const { data: session } = useSession();
 
   const changeTheme = (value: boolean) => {
-    setTheme(value ? 'dark' : 'light');
+    setTheme(value ? 'light' : 'dark');
   };
 
   const onClick = (e: { key: React.Key }) => {
@@ -41,13 +40,13 @@ const AdminMenu: React.FC = () => {
   return (
     <>
       <Flex
-        className="bg-tertiary"
+        className="bg-slate-700"
         gap="10"
         vertical
         align="center"
         justify={'center'}>
-        <div className="flex pt-2 flex-col gap-10 h-[100px]">
-          {session ? (
+        <div className="w-full px-5 flex flex-row-reverse justify-between items-center pt-2 gap-4 h-[60px]">
+          {authenticated ? (
             <span className="hidden md:flex items-center">
               <Button
                 size="small"
@@ -66,7 +65,7 @@ const AdminMenu: React.FC = () => {
           )}
           <Switch
             className="mb-0 "
-            checked={theme === 'dark'}
+            checked={theme === 'light'}
             onChange={changeTheme}
             checkedChildren="Light"
             unCheckedChildren="Dark"
@@ -74,7 +73,7 @@ const AdminMenu: React.FC = () => {
         </div>
 
         <Menu
-          className="min-h-[100vh]"
+          className="min-h-[130vh]"
           disabledOverflow
           theme={theme}
           onClick={onClick}

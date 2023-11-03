@@ -1,5 +1,5 @@
 'use client';
-import CarModal from '@/components/ui/Modal/CarModal';
+import CreateCarParentModal from '@/components/ui/Car/CarParent';
 import { Flex, Space } from 'antd';
 import Search from 'antd/es/input/Search';
 import { PlusCircleIcon } from 'lucide-react';
@@ -37,7 +37,7 @@ const CarManager = () => {
           </div>
         </div>
       </div>
-      <CarModal open={open} setOpen={setOpen} />
+      <CreateCarParentModal open={open} setOpen={setOpen} />
     </>
   );
 };

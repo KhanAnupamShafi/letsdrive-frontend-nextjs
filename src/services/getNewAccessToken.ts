@@ -3,6 +3,7 @@
 import { baseUrl } from '@/app/page';
 
 export const getNewAccessToken = async (token: string) => {
+  console.log(token, 'got from middleware');
   try {
     const res = await fetch(`${baseUrl}/auth/refresh-token`, {
       method: 'POST',
@@ -13,6 +14,8 @@ export const getNewAccessToken = async (token: string) => {
       },
     });
     const data = await res.json();
+    console.log(data, 'sending to middleware');
+
     return data;
   } catch (error: any) {
     // console.log(error);

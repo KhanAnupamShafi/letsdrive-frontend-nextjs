@@ -7,8 +7,11 @@ import {
   Menu,
   UserCircle2,
 } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
-function Navbar() {
+import profilePic from '../../../assets/user-1.jpg';
+function Navbar({ session }: { session: boolean }) {
   const [scrolling, setScrolling] = useState(false); // State to track scrolling
   const [className, setClassName] = useState(
     'z-30 border-y sticky top-0 duration-300 lg:text-2xl'
@@ -69,25 +72,27 @@ function Navbar() {
                 </div>
               </div>
             </div>
-            <div className="z-10 text-left">
-              <div className="relative top-1 inline-block md:top-[2px]">
-                <button
-                  className="flex items-center justify-center rounded-full focus:outline-none"
-                  id="headlessui-menu-button-:Reidja:"
-                  type="button">
-                  <img
-                    alt="profile"
-                    loading="lazy"
-                    width="45"
-                    height="45"
-                    decoding="async"
-                    data-nimg="1"
-                    className="rounded-full"
-                    src="https://placewisetw.vercel.app/_next/image?url=%2Fimg%2Fuser-1.jpg&amp;w=96&amp;q=75&amp;dpl=dpl_42kWG5pc2HFwKaqT2KDFDUp5BMqR"
-                  />
-                </button>
+            {session && (
+              <div className="z-10 text-left">
+                <div className="relative top-1 inline-block md:top-[2px]">
+                  <button
+                    className="flex items-center justify-center rounded-full focus:outline-none"
+                    id="headlessui-menu-button-:Reidja:"
+                    type="button">
+                    <Image
+                      alt="profile"
+                      loading="lazy"
+                      width="45"
+                      height="45"
+                      decoding="async"
+                      data-nimg="1"
+                      className="rounded-full"
+                      src={profilePic}
+                    />
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
           </div>
           <div className="lg:order-1">
             <button className="rounded-md border bg-[#EFEFFD] px-2 py-1 lg:hidden">
@@ -98,10 +103,12 @@ function Navbar() {
             <div className="hidden lg:block">
               <ul className="menus absolute left-0 flex w-full flex-col bg-white px-2 lg:static lg:top-full lg:w-auto lg:flex-row lg:bg-transparent lg:px-0 text-neutral">
                 <li className="menu-items relative cursor-pointer">
-                  <span className="flex items-center justify-between gap-1">
-                    Home
-                    <Dot />
-                  </span>
+                  <Link href={'/'}>
+                    <span className="flex items-center justify-between gap-1">
+                      Home
+                      <Dot />
+                    </span>
+                  </Link>
                 </li>
                 <li className="menu-items relative cursor-pointer">
                   <span className="flex items-center justify-between gap-1">
@@ -116,10 +123,12 @@ function Navbar() {
                   </span>
                 </li>
                 <li className="menu-items relative cursor-pointer">
-                  <span className="flex items-center justify-between gap-1">
-                    Dashboard
-                    <Dot className="invisible" />
-                  </span>
+                  <Link href={'/profile'}>
+                    <span className="flex items-center justify-between gap-1">
+                      Dashboard
+                      <Dot className="invisible" />
+                    </span>
+                  </Link>
                 </li>
               </ul>
             </div>

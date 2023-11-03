@@ -1,7 +1,7 @@
 const ServiceManagementPage = () => {
   return (
     <div>
-      <h1>aaa bookserviceing</h1>
+      <h1>Service Page </h1>
     </div>
   );
 };

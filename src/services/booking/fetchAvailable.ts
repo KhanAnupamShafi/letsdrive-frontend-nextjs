@@ -18,7 +18,6 @@ export const fetchAvailable = async (
       return acc;
     }, [] as string[])
     .join('&');
-  // console.log(queryString, ' inside fetch available');
   const res = await fetch(
     `${baseUrl}/car-packages/available?${queryString}`,
     {

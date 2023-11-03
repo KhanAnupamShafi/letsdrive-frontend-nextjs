@@ -92,7 +92,7 @@ const ModalBooking = ({
         }
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
 
         setPriceData(data);
       })
@@ -129,7 +129,7 @@ const ModalBooking = ({
         type: 'loading',
         content: 'Loading...',
       });
-      if (response.status === true) {
+      if (response.success === true) {
         messageApi.success({
           content: 'Booking successful',
           duration: 4,
@@ -149,11 +149,6 @@ const ModalBooking = ({
     } catch (error) {
       messageApi.error('Failed to request booking');
     }
-  };
-
-  const handleCancel = () => {
-    console.log('Clicked cancel button');
-    setOpen(false);
   };
 
   const onChangeRadio = ({ target: { value } }: RadioChangeEvent) => {

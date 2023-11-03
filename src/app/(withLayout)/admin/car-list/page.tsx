@@ -10,17 +10,40 @@ const CarManagementPage = async ({
 }: {
   searchParams: Record<string, unknown>;
 }) => {
-  const data: any = await getAllCars(searchParams);
-  console.log(data);
-  return (
-    <AntContents>
-      <AdminTable title="All Cars">
-        {/* <SearchFilter /> */}
-        <CarManager />
-        <MyTable columns={columns} data={data} />
-      </AdminTable>
-    </AntContents>
-  );
+  let loading = true; // Initialize loading as true
+
+  try {
+    // Fetch data
+    const response = await getAllCars(searchParams);
+
+    // Data has been successfully fetched
+    loading = false; // Set loading to false
+
+    // Return the UI
+    return (
+      <AntContents>
+        <AdminTable title="All Cars">
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <>
+              <CarManager />
+              <MyTable columns={columns} data={response?.data} />
+            </>
+          )}
+        </AdminTable>
+      </AntContents>
+    );
+  } catch (error) {
+    console.error('Error fetching data:', error);
+
+    // Handle the error if needed
+    return (
+      <AntContents>
+        <div>Error fetching data.</div>
+      </AntContents>
+    );
+  }
 };
 
 export default CarManagementPage;

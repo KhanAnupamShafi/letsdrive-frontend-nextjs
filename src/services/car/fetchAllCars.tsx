@@ -28,15 +28,15 @@ export const getAllCars = async (
     headers: {
       'Content-Type': 'application/json',
     },
-    // cache: "no-cache"
+    // cache: 'no-store',
     next: {
-      revalidate: 24 * 60 * 60,
+      revalidate: 5,
       tags: ['car-packages'],
     },
   });
-  const { data } = await res.json();
-  if (res.ok && data) {
-    return data;
+  const response = await res.json();
+  if (res.ok && response?.data) {
+    return response;
   } else {
     return [];
   }

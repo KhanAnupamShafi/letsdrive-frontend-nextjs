@@ -1,6 +1,9 @@
 /* Instruments */
-// import { counterSlice } from './slices'
+
+import { apiSlice } from './api/apiSlice';
+import modalReducer from './slices/modalSlice';
 
 export const reducer = {
-  // counter: counterSlice.reducer,
+  [apiSlice.reducerPath]: apiSlice.reducer,
+  modal: modalReducer,
 };

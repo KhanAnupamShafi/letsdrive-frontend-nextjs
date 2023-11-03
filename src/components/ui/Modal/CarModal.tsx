@@ -1,8 +1,6 @@
 'use client';
-import { baseUrl } from '@/app/page';
 import { getAllServiceNames } from '@/services/car/fetchCarServiceName';
 import {
-  Button,
   Checkbox,
   Form,
   Input,
@@ -16,11 +14,16 @@ import { useEffect, useState } from 'react';
 type ModalCarProps = {
   open: boolean;
   setOpen: (isOpen: boolean) => void;
+  createCarPackage: (data: any) => Promise<any>;
 };
 
 const { Option } = Select;
 
-const CarModal = ({ open, setOpen }: ModalCarProps) => {
+const CarModal = ({
+  open,
+  setOpen,
+  createCarPackage,
+}: ModalCarProps) => {
   const [form] = Form.useForm();
   const [serviceNames, setServiceNames] = useState([]);
   const [messageApi, contextHolder] = message.useMessage();
@@ -41,9 +44,8 @@ const CarModal = ({ open, setOpen }: ModalCarProps) => {
   const handleOk = async () => {
     try {
       const values = await form.validateFields();
-      console.log(values);
       // Convert the selected options into properties with true values
-      const selectedOptions: Record<string, unknown> = {
+      const selectedOptions: any = {
         wifi: false,
         airConditioner: false,
         transmission: false,
@@ -62,62 +64,31 @@ const CarModal = ({ open, setOpen }: ModalCarProps) => {
         image: values.imageUrl || '',
         seatCapacity: values.seatCapacity || 1,
         luggage: values.luggage || 1,
-        priceStart: Math.floor(Math.random() * 100) + 50,
+        priceStart: Number(
+          (Math.floor(Math.random() * 100) + 50).toFixed()
+        ),
         serviceId: values?.service,
         bookedUntil: '',
         ...selectedOptions,
       };
 
-      try {
-        const res = await fetch(`${baseUrl}/car-packages/create`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-          cache: 'no-cache',
-        });
-        const response = await res.json();
-        messageApi.open({
-          key: 'updatable',
-          type: 'loading',
-          content: 'Loading...',
-        });
-        console.log(response);
-        if (response.success === true) {
-          messageApi.success({
-            content: 'Car data posted successfully',
-            duration: 4,
-            key: 'updatable',
-          });
+      await createCarPackage(data);
 
-          setOpen(false); // Close the modal on successful submission
-        } else {
-          // Handle any errors
-          messageApi.error({
-            content: response?.message,
-            duration: 5,
-            key: 'updatable',
-          });
-        }
-        setOpen(false); // Close the modal on successful submission
-      } catch (error) {
-        messageApi.error('Failed to request car data post');
-      }
-
-      setOpen(false);
+      messageApi.open({
+        key: 'updatable',
+        type: 'loading',
+        content: 'Loading...',
+      });
+      form.resetFields();
     } catch (error) {
       console.error('Validation failed:', error);
     }
+
+    setOpen(false);
   };
 
   const handleCancel = () => {
     setOpen(false);
-  };
-
-  const onSelectChange = (value: any) => {
-    console.log(value);
-    // Update the selected options when the checkboxes change
   };
 
   return (
@@ -125,7 +96,7 @@ const CarModal = ({ open, setOpen }: ModalCarProps) => {
       {' '}
       {contextHolder}
       <Modal
-        title="Modal 1000px width"
+        title=""
         centered
         visible={open}
         onOk={handleOk}
@@ -143,10 +114,7 @@ const CarModal = ({ open, setOpen }: ModalCarProps) => {
             name="service"
             label="Car services"
             rules={[{ required: true }]}>
-            <Select
-              placeholder="Select a service"
-              onChange={onSelectChange}
-              allowClear>
+            <Select placeholder="Select a service" allowClear>
               {serviceNames.map((service: any) => (
                 <Option key={service.id} value={service.id}>
                   {service.name}
@@ -178,14 +146,6 @@ const CarModal = ({ open, setOpen }: ModalCarProps) => {
           </Form.Item>
           <Form.Item label="Image URL" name="imageUrl">
             <Input placeholder="Enter URL" />
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit">
-              Save Changes
-            </Button>
-            <Button type="default" onClick={handleCancel}>
-              Cancel
-            </Button>
           </Form.Item>
         </Form>
       </Modal>

@@ -7,8 +7,8 @@ const DefaultHeader = async () => {
   const session = await getServerSession(authOptions);
   return (
     <>
-      <TopHeader session={session ? true : false} />
-      <Navbar />
+      <TopHeader session={session?.email ? true : false} />
+      <Navbar session={session?.email ? true : false} />
     </>
   );
 };

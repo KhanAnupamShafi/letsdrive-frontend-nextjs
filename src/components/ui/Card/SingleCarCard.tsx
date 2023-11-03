@@ -21,7 +21,6 @@ const SingleCarCard = ({ data }: { data: any }) => {
     airConditioner,
     transmission,
   } = data || {};
-  console.log(image);
 
   return (
     <div className="bg-white grid grid-cols-12 rounded-2xl p-2">

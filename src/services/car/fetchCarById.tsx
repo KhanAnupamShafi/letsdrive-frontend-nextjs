@@ -1,22 +1,24 @@
 'use server';
 
 import { baseUrl } from '@/app/page';
-import { revalidatePath, revalidateTag } from 'next/cache';
 
-export async function createCarPackage(data: any): Promise<any> {
+export async function fetchCarById(id: string): Promise<any> {
+  ('use server');
   try {
-    const res = await fetch(`${baseUrl}/car-packages/create`, {
-      method: 'POST',
+    const res = await fetch(`${baseUrl}/car-packages/${id}`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      next: {
+        revalidate: 24 * 60 * 60,
+        tags: ['single-car', 'car-packages'],
+      },
     });
     const response = await res.json();
 
     // Revalidation and other logic
-    revalidateTag('car-packages');
-    revalidatePath('/admin/[slug]', 'page');
+
     return response;
   } catch (error) {
     console.error(error);

@@ -3,10 +3,15 @@
 import { baseUrl } from '@/app/page';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
-export async function createCarPackage(data: any): Promise<any> {
+export async function updateCarPackage(
+  id: any,
+  data: any
+): Promise<any> {
+  console.log(id, data);
+
   try {
-    const res = await fetch(`${baseUrl}/car-packages/create`, {
-      method: 'POST',
+    const res = await fetch(`${baseUrl}/car-packages/${id}`, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -17,6 +22,9 @@ export async function createCarPackage(data: any): Promise<any> {
     // Revalidation and other logic
     revalidateTag('car-packages');
     revalidatePath('/admin/[slug]', 'page');
+    // if (response) {
+    //   redirect('/login');
+    // }
     return response;
   } catch (error) {
     console.error(error);

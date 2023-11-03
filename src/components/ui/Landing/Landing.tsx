@@ -26,8 +26,6 @@ const Landing = ({ data }: any) => {
     bookDate: '',
   });
 
-  console.log(formState);
-
   const filterOption = (
     input: string,
     option?: { label: string; value: string }
@@ -59,13 +57,13 @@ const Landing = ({ data }: any) => {
       <div className="container">
         <div className="text-center relative z-[2]">
           <h1 className="text-[40px] lg:text-[56px] leading-[68px] text-[var(--neutral-700)] font-semibold">
-            Best value car hire
+            Discover the Best Value Car Hire
           </h1>
           <p className="text-xl mx-auto max-w-[600px] text-gray-500 mt-4 md:mt-9">
-            Explore and Book car now and get exclusive rates for your
-            trip
+            Explore and Book Your Dream Car Today get exclusive rates
+            for your trip
           </p>
-          <div className="z-30 p-4 lg:p-5 rounded-xl shadow-lg bg-white flex items-center flex-wrap gap-3 relative max-w-[1060px] mx-auto mt-12">
+          <div className="z-30 p-4 lg:p-5 rounded-xl shadow-lg bg-white flex items-center justify-center flex-wrap gap-3 relative max-w-[1060px] mx-auto mt-12">
             <div className="text-left w-full md:w-[48%] xl:w-[22%] cursor-pointer">
               <div className="relative">
                 <Flex className="px-2 py-1 flex gap-3 items-center relative w-full cursor-default focus:shadow-xl bg-[var(--bg-1)] border rounded-3xl justify-center">
@@ -89,7 +87,7 @@ const Landing = ({ data }: any) => {
                 </Flex>
               </div>
             </div>
-            <div className="text-left w-full md:w-[48%] xl:w-[22%] cursor-pointer">
+            <div className="text-center w-full md:w-[48%] xl:w-[22%] cursor-pointer">
               <div className="relative">
                 <Flex
                   align="center"

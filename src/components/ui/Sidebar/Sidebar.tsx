@@ -4,19 +4,16 @@ import AntBreadCrumb from '@/shared/breadCrumb';
 import { Avatar, Badge, Flex, Layout, Space } from 'antd';
 import { MailOpen, User } from 'lucide-react';
 import { useSession } from 'next-auth/react';
-import { usePathname } from 'next/navigation';
 import AdminMenu from './AdminMenu';
 type SidebarProps = {
   children: React.ReactNode;
+  session: boolean;
 };
-const Sidebar = ({ children }: SidebarProps) => {
+const Sidebar = ({ children, session }: SidebarProps) => {
   const { Header, Sider, Footer } = Layout;
-  const { data: session } = useSession();
-  console.log(session);
 
-  const pathname = usePathname();
-  let tempo = 'admin';
-
+  const { data } = useSession();
+  console.log(data?.role);
   return (
     <Layout className="flex ">
       <Sider
@@ -41,11 +38,11 @@ const Sidebar = ({ children }: SidebarProps) => {
             <Badge dot color="green" className="leading-none	mr-2">
               <Avatar shape="square" icon={<User />} />
             </Badge>
-            <span>{session?.role}</span>
+            <span>{data?.role}</span>
           </span>
         </Header>
         <div className="demo-logo-vertical" />
-        <AdminMenu />
+        <AdminMenu authenticated={data?.role ? true : false} />
         {/* <Menu
           className="bg-white p-0 "
           disabledOverflow
@@ -92,11 +89,11 @@ const Sidebar = ({ children }: SidebarProps) => {
           {' '}
           <Space className="mr-0" direction="horizontal" size={24}>
             <h4 className="text-xl font-semibold">
-              {session?.fullName}
+              {data?.fullName}
             </h4>
             <Flex align="center" gap={10}>
               <MailOpen />
-              <p className=""> {session?.email}</p>
+              <p className=""> {data?.email}</p>
             </Flex>
           </Space>
         </Header>

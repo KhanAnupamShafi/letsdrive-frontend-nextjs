@@ -8,7 +8,6 @@ export const cancelBooking = async (id: any) => {
     method: 'PATCH',
   });
   const { data } = await res.json();
-  console.log(res, data, 'result');
 
   revalidateTag('bookings');
 

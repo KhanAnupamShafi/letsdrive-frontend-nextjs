@@ -1,4 +1,34 @@
-const Booking = () => {
+'use client';
+import { cancelBooking } from '@/services/booking/cancelBooking';
+import { Button, Modal, Tag, message } from 'antd';
+import dayjs from 'dayjs';
+import { AlertTriangle } from 'lucide-react';
+
+const Booking = ({ data }: { data: any }) => {
+  const { confirm } = Modal;
+
+  const showPromiseConfirm = (id: string) => {
+    confirm({
+      title: 'Are You Sure?',
+      icon: <AlertTriangle color="red" />,
+      content: 'This is irreversible',
+      okButtonProps: {
+        className: 'bg-red-500',
+      },
+      onOk() {
+        return cancelBooking(id) // Call your async function here
+          .then(() => {
+            // Handle success
+            message.info('Operation completed successfully');
+          })
+          .catch((error) => {
+            // Handle errors
+            message.error('Oops, an error occurred:', error);
+          });
+      },
+      onCancel() {},
+    });
+  };
   return (
     <div
       className="col-span-12 md:col-span-7 lg:col-span-8 xl:col-span-9"
@@ -110,82 +140,99 @@ const Booking = () => {
                   Upcoming booking (2){' '}
                 </h5>
                 <ul className="flex flex-col gap-4">
-                  <li>
-                    <div className="border border-neutral-40 p-4 p-sm-6 xl:p-8 rounded-2xl">
-                      <div className="flex gap-4 flex-wrap items-center justify-between">
-                        <div className="flex items-center gap-4 flex-wrap">
-                          <div className="grid place-content-center w-12 h-12 shadow-lg rounded-full shrink-0">
-                            <div className="grid place-content-center w-10 h-10 bg-[var(--primary-light)] text-primary rounded-full">
-                              <i className="las la-plane-departure text-2xl" />
+                  {data?.map((item: any) => {
+                    let color = 'green';
+                    if (item?.status === 'PENDING') {
+                      color = 'gold';
+                    } else color = 'red';
+                    return (
+                      <li key={item?.id}>
+                        <div className="border border-neutral-40 p-4 p-sm-6 xl:p-8 rounded-2xl">
+                          <div className="flex gap-4 flex-wrap items-center justify-between">
+                            <div className="flex items-center gap-4 flex-wrap">
+                              <div className="grid place-content-center w-12 h-12 shadow-lg rounded-full shrink-0">
+                                <div className="grid place-content-center w-10 h-10 bg-[var(--primary-light)] text-primary rounded-full">
+                                  <i className="las la-plane-departure text-2xl" />
+                                </div>
+                              </div>
+                              <div className="flex-grow">
+                                <h5 className="font-medium mb-1">
+                                  {item?.pickUpLocation} To{' '}
+                                  {item?.destination}
+                                </h5>
+                                <ul className="flex gap-3 justify-around items-center flex-wrap list-divider-half-xs">
+                                  <li>
+                                    <span className="inline-block text-sm">
+                                      <span className="inline-block clr-neutral-500">
+                                        Booking ID :
+                                      </span>
+                                      <span className="inline-block text-[var(--neutral-700)] font-medium">
+                                        AHA1{item?.id?.slice(0, 5)}
+                                      </span>
+                                    </span>
+                                  </li>
+                                  <li>
+                                    <span className="inline-block text-sm">
+                                      <span className="inline-block text-neutral">
+                                        Travel Cost :{' '}
+                                        {item?.totalCost}
+                                      </span>
+                                      <span className="inline-block text-[var(--neutral-700)] font-medium">
+                                        {}
+                                      </span>
+                                    </span>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            {item?.status === 'PENDING' && (
+                              <Button
+                                type="default"
+                                onClick={() =>
+                                  showPromiseConfirm(item?.id)
+                                }
+                                className="btn-outline text-primary font-semibold shrink-0">
+                                Cancel Booking
+                              </Button>
+                            )}
+                          </div>
+                          <div className="border border-dashed my-6" />
+                          <div className="grid grid-cols-12 gap-4">
+                            <div className="col-span-12 lg:col-span-6 xl:col-span-4">
+                              <p className="clr-neutral-500">
+                                Booking time{' '}
+                              </p>
+                              <h5 className="mb-0 font-medium">
+                                {dayjs(item?.bookingDate).format(
+                                  'ddd DD MMM h:mm A'
+                                )}
+                              </h5>
+                            </div>
+                            <div className="col-span-12 lg:col-span-6 xl:col-span-4">
+                              <p className="clr-neutral-500">
+                                Departure time{' '}
+                              </p>
+                              <h5 className="mb-0 font-medium">
+                                {dayjs(item?.departureDate).format(
+                                  'ddd DD MMM h:mm A'
+                                )}
+                              </h5>
+                            </div>
+                            <div className="col-span-12 lg:col-span-6 xl:col-span-4">
+                              {
+                                <Tag
+                                  color={color}
+                                  className="clr-neutral-500">
+                                  {item?.status}
+                                </Tag>
+                              }
+                              <h5 className="mb-0 font-medium"></h5>
                             </div>
                           </div>
-                          <div className="flex-grow">
-                            <h5 className="font-medium mb-1">
-                              Dhaka To Chittagong
-                            </h5>
-                            <ul className="flex items-center flex-wrap list-divider-half-xs">
-                              <li>
-                                <span className="inline-block text-sm">
-                                  <span className="inline-block clr-neutral-500">
-                                    Booking ID :
-                                  </span>
-                                  <span className="inline-block text-[var(--neutral-700)] font-medium">
-                                    AHA12548
-                                  </span>
-                                </span>
-                              </li>
-                              <li>
-                                <span className="inline-block text-sm">
-                                  <span className="inline-block clr-neutral-500">
-                                    Travel Class :
-                                  </span>
-                                  <span className="inline-block text-[var(--neutral-700)] font-medium">
-                                    Bussiness
-                                  </span>
-                                </span>
-                              </li>
-                            </ul>
-                          </div>
                         </div>
-                        <a
-                          className="btn-outline text-primary font-semibold shrink-0"
-                          href="#">
-                          Manage Booking
-                        </a>
-                      </div>
-                      <div className="border border-dashed my-6" />
-                      <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-12 lg:col-span-6 xl:col-span-4">
-                          <p className="clr-neutral-500">
-                            {' '}
-                            Departure time{' '}
-                          </p>
-                          <h5 className="mb-0 font-medium">
-                            Tue 09 Jan 12:00 AM
-                          </h5>
-                        </div>
-                        <div className="col-span-12 lg:col-span-6 xl:col-span-4">
-                          <p className="clr-neutral-500">
-                            {' '}
-                            Arrival time{' '}
-                          </p>
-                          <h5 className="mb-0 font-medium">
-                            Tue 06 Aug 4:00 PM
-                          </h5>
-                        </div>
-                        <div className="col-span-12 lg:col-span-6 xl:col-span-4">
-                          <p className="clr-neutral-500">
-                            {' '}
-                            Booked by{' '}
-                          </p>
-                          <h5 className="mb-0 font-medium">
-                            {' '}
-                            Guy Hawkins{' '}
-                          </h5>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
               <span

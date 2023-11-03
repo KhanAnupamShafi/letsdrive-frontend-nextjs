@@ -32,12 +32,12 @@ export const authOptions: NextAuthOptions = {
             headers: { 'Content-Type': 'application/json' },
           });
           const { data } = await res.json();
-          const verifiedToken: any = jwtHelpers.verifyToken(
-            data?.accessToken,
-            process.env.JWT_SECRET!
+          console.log(data, 'data after rlogin');
+          const verifiedToken: any = jwtHelpers.decodeToken(
+            data?.accessToken
           );
-          // console.log(verifiedToken, 'verifiedToken auth option');
-          if (res.ok && data) {
+          console.log(verifiedToken, 'decoded after login');
+          if (res.ok && data?.accessToken) {
             return {
               ...data,
               ...verifiedToken,
@@ -51,25 +51,28 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
-      // console.log(token, 'token auth option');
-      // console.log(user, 'user auth option');
+    async jwt({ token, user, account }) {
+      console.log(token, 'callbacks token auth option');
+      // console.log(user, 'callbacks user auth option');
+      // console.log(account, 'callbacks token auth option');
       return {
         ...token,
         ...user,
+        ...account,
       };
     },
     async session({ session, token }: { session: any; token: any }) {
       // console.log(session, 'session auth option');
-      // console.log(token, 'token auth option inside session');
+      console.log(token, 'token auth option inside session');
       const verifiedToken = jwtHelpers.verifyToken(
         token?.accessToken,
         process.env.JWT_SECRET!
       );
+      console.log(verifiedToken, 'vtoken auth option');
       if (!verifiedToken) {
-        console.log('token expired so new token generated');
         const { data } = await getNewAccessToken(token?.accessToken);
         token.accessToken = data?.accessToken;
+        console.log('token expired so new token generated', data);
       }
       return {
         ...session,
@@ -79,7 +82,7 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: 'jwt',
-    maxAge: 24 * 60 * 60, // this is nextAuth access token expire which should be same as jwt access token expire in
+    maxAge: 60 * 60 * 24, // this is nextAuth access token expire which should be same as jwt access token expire in
   },
   jwt: {
     secret: process.env.NEXTAUTH_SECRET,

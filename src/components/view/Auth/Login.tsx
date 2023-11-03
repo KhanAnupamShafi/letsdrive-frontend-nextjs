@@ -28,7 +28,7 @@ const Login: React.FC<RegisterProps> = ({ setCurrentView }) => {
         email: email,
         password: password,
         redirect: false,
-        // callbackUrl: "/",
+        callbackUrl: '/',
       });
 
       if (result?.ok && !result.error) {

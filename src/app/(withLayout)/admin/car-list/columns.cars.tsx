@@ -12,7 +12,6 @@ import {
 } from 'antd';
 import {
   AlertTriangle,
-  CheckCheck,
   ChevronDownCircle,
   XCircle,
 } from 'lucide-react';
@@ -32,21 +31,10 @@ const getDropdownMenuItems = (
 ): MenuProps['items'] => [
   {
     key: '1',
-    label: (
-      <Link href={`/admins/car-list/${id}`}>
-        <Flex align="baseline" gap={2}>
-          <span>Approve</span> <CheckCheck size={14} />
-        </Flex>
-      </Link>
-    ),
-    disabled: status === 'APPROVED' || status === 'CANCELED', // Updated condition
+    label: <Link href={`/admin/car-list/${id}/update`}>Edit</Link>,
   },
   {
     key: '2',
-    label: <Link href={`/admins/bookings/${id}/update`}>Edit</Link>,
-  },
-  {
-    key: '3',
     label: (
       <span>
         <Flex align="center" gap={2}>
@@ -146,7 +134,6 @@ export const columns: any = [
     key: 'isAvailable',
     render: (_: any, { isAvailable }: any) => {
       let color = 'green';
-      console.log(isAvailable);
       if (isAvailable === false) {
         color = 'gold';
       }

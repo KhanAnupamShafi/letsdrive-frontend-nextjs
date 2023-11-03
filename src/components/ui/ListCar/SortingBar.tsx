@@ -1,5 +1,4 @@
 const SortingBar = ({ meta, length }: any) => {
-  console.log(meta);
   return (
     <div className="col-span-12">
       <div className="bg-white rounded-lg py-2 px-6 shadow-lg">
