@@ -38,7 +38,7 @@ const getDropdownMenuItems = (
     label: (
       <span>
         <Flex align="center" gap={2}>
-          Cancel <XCircle size={14} />
+          Delete <XCircle size={14} />
         </Flex>
       </span>
     ),

@@ -2,14 +2,14 @@
 
 import UploadImage from '@/components/ui/Upload/UploadingImg';
 import { createContent } from '@/services/cms/createContent';
-import { getAllCategoryNames } from '@/services/cms/fetcgCmsCategories';
+import { getAllCategoryNames } from '@/services/cms/fetchCmsCategories';
+import { updateContentById } from '@/services/cms/updateContentById';
 import { UpCircleOutlined } from '@ant-design/icons';
 
 import {
   Button,
   Col,
   ColorPicker,
-  ColorPickerProps,
   Flex,
   FloatButton,
   Form,
@@ -21,6 +21,7 @@ import {
 } from 'antd';
 import { useSession } from 'next-auth/react';
 import dynamic from 'next/dynamic';
+import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 
@@ -51,16 +52,12 @@ const modules = {
   },
 };
 
-export default function HomeEditor() {
+export default function HomeEditor({ mode }: { mode: string }) {
   const [messageApi, contextHolder] = message.useMessage();
-
+  const { contentId } = useParams();
   const [categoryNames, setCategoryNames] = useState([]);
   const { data: session } = useSession();
-  // const [color, setColor] = useState<Color | string>(
-  //   token.colorPrimary
-  // );
-  const [color, setColor] =
-    useState<ColorPickerProps['value']>('#1677ff');
+
   const [content, setContent] = useState('');
 
   useEffect(() => {
@@ -77,9 +74,8 @@ export default function HomeEditor() {
   }, []);
 
   const [form] = Form.useForm();
-
+  const router = useRouter();
   const onFinish = async (values: any) => {
-    console.log(values, 'ttt');
     messageApi.open({
       key: 'updatable',
       type: 'loading',
@@ -106,23 +102,44 @@ export default function HomeEditor() {
       adminId: session?.id,
       categoryId: data.category,
     };
-    console.log(requestObj, '123');
-
-    const response = await createContent(requestObj, formData);
-
-    // Handle success
-    if (response.success === true) {
-      message.success({
-        content: 'Car data posted successfully',
-        duration: 4,
-        key: 'updatable',
-      });
-    } else {
-      message.error({
-        content: response?.message,
-        duration: 5,
-        key: 'updatable',
-      });
+    if (mode === 'create') {
+      const response = await createContent(requestObj, formData);
+      // Handle success
+      if (response.success === true) {
+        message.success({
+          content: 'Content posted successfully',
+          duration: 4,
+          key: 'updatable',
+        });
+        router.push('/admin/manage-contents');
+      } else {
+        message.error({
+          content: response?.message,
+          duration: 5,
+          key: 'updatable',
+        });
+      }
+    } else if (mode === 'update') {
+      const response = await updateContentById(
+        contentId,
+        requestObj,
+        formData
+      );
+      // Handle success
+      if (response.success === true) {
+        message.success({
+          content: 'Content updated successfully',
+          duration: 4,
+          key: 'updatable',
+        });
+        router.push('/admin/manage-contents');
+      } else {
+        message.error({
+          content: response?.message,
+          duration: 5,
+          key: 'updatable',
+        });
+      }
     }
   };
 
@@ -177,7 +194,7 @@ export default function HomeEditor() {
           </div>
 
           <Form.Item name="theme" label="Theme Color">
-            <ColorPicker defaultValue={'#000'} showText />
+            <ColorPicker showText />
           </Form.Item>
         </Flex>
         <Col span={8} style={{ margin: '10px 0' }}>
@@ -189,7 +206,9 @@ export default function HomeEditor() {
           onChange={setContent}
           theme="snow"
         />
-        <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
+        <Form.Item
+          className="mt-10"
+          wrapperCol={{ span: 12, offset: 6 }}>
           <Space>
             <Button type="primary" htmlType="submit">
               Submit

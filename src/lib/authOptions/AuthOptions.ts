@@ -32,11 +32,11 @@ export const authOptions: NextAuthOptions = {
             headers: { 'Content-Type': 'application/json' },
           });
           const { data } = await res.json();
-          console.log(data, 'data after rlogin');
+          // console.log(data, 'data after rlogin');
           const verifiedToken: any = jwtHelpers.decodeToken(
             data?.accessToken
           );
-          console.log(verifiedToken, 'decoded after login');
+          // console.log(verifiedToken, 'decoded after login');
           if (res.ok && data?.accessToken) {
             return {
               ...data,
@@ -44,7 +44,7 @@ export const authOptions: NextAuthOptions = {
             };
           }
         } catch (error: any) {
-          // console.log(error);
+          console.log(error, 'error in auth option');
           throw new Error(error.message);
         }
       },
@@ -52,7 +52,7 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user, account }) {
-      console.log(token, 'callbacks token auth option');
+      // console.log(token, 'callbacks token auth option');
       // console.log(user, 'callbacks user auth option');
       // console.log(account, 'callbacks token auth option');
       return {
@@ -63,14 +63,16 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }: { session: any; token: any }) {
       // console.log(session, 'session auth option');
-      console.log(token, 'token auth option inside session');
-      const verifiedToken = jwtHelpers.verifyToken(
+      // console.log(token, 'token auth option inside session');
+      const verifiedToken: any = jwtHelpers.verifyToken(
         token?.accessToken,
         process.env.JWT_SECRET!
       );
-      console.log(verifiedToken, 'vtoken auth option');
-      if (!verifiedToken) {
+      // console.log(verifiedToken, 'vtoken auth option');
+      if (!verifiedToken?.email) {
         const { data } = await getNewAccessToken(token?.accessToken);
+        console.log(data, 'getNewAccessToken auth option');
+
         token.accessToken = data?.accessToken;
         console.log('token expired so new token generated', data);
       }

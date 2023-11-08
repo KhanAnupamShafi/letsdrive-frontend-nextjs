@@ -15,7 +15,7 @@ const rolesRedirect: Record<string, string> = {
 export async function middleware(request: NextRequest) {
   const token = await getToken({
     req: request,
-    // secret: 'secret',
+    secret: 'secret',
     // secureCookie: true,
   });
   // console.log(token, '🫠');
@@ -30,7 +30,7 @@ export async function middleware(request: NextRequest) {
     if (hybridRoutes.includes(pathname)) {
       return NextResponse.next();
     }
-    return NextResponse.redirect(`${URI}/login`);
+    return NextResponse.redirect(`${URI}`);
   }
 
   const role = decodedToken?.role as string;
@@ -48,7 +48,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(rolesRedirect[role] as string);
   }
 
-  return NextResponse.redirect(`${URI}/`);
+  return NextResponse.redirect(`${URI}`);
 }
 
 // See "Matching Paths" below to learn more

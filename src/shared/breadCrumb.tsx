@@ -2,7 +2,7 @@
 import { Breadcrumb } from 'antd';
 import { HomeIcon } from 'lucide-react';
 import Link from 'next/link';
-import { useParams, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 interface BreadcrumbItem {
   title: JSX.Element;
@@ -10,8 +10,10 @@ interface BreadcrumbItem {
 
 const AntBreadCrumb = () => {
   const pathname = usePathname();
-  const params = useParams();
-
+  const parts = pathname.split('/'); // Split the pathname by slashes
+  const id = parts[parts.length - 2];
+  const contentId = parts[parts.length - 1];
+  console.log(pathname);
   // Define a mapping of routes to breadcrumb items
   const breadcrumbItems: { [key: string]: BreadcrumbItem[] } = {
     '/admin/home': [
@@ -59,6 +61,21 @@ const AntBreadCrumb = () => {
         title: <Link href="/admin/car-list">Car List</Link>,
       },
     ],
+    [`/admin/car-list/${id}/update`]: [
+      {
+        title: (
+          <Link href="/admin/home" className="flex items-center">
+            <HomeIcon color="#091e42" size={18} />
+          </Link>
+        ),
+      },
+      {
+        title: <Link href="/admin/car-list">Car List</Link>,
+      },
+      {
+        title: <span>{id}</span>,
+      },
+    ],
 
     '/admin/services': [
       {
@@ -87,6 +104,37 @@ const AntBreadCrumb = () => {
       },
     ],
     '/admin/manage-contents': [
+      {
+        title: (
+          <Link href="/admin/home" className="flex items-center">
+            <HomeIcon color="#091e42" size={18} />
+          </Link>
+        ),
+      },
+      {
+        title: (
+          <Link href="/admin/manage-contents">Manage Content</Link>
+        ),
+      },
+    ],
+    '/admin/manage-contents/create': [
+      {
+        title: (
+          <Link href="/admin/home" className="flex items-center">
+            <HomeIcon color="#091e42" size={18} />
+          </Link>
+        ),
+      },
+      {
+        title: (
+          <Link href="/admin/manage-contents">Manage Content</Link>
+        ),
+      },
+      {
+        title: <span>Create Content</span>,
+      },
+    ],
+    [pathname]: [
       {
         title: (
           <Link href="/admin/home" className="flex items-center">

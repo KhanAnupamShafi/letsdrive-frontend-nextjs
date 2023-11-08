@@ -90,11 +90,15 @@ const UploadImage: React.FC = () => {
         title={previewTitle}
         footer={null}
         onCancel={handleCancel}>
-        <Image
+        {/* <Image
           alt="example"
           style={{ objectFit: 'cover' }}
           src={previewImage}
           fill={true}
+        /> */}
+        <Image
+          alt="default"
+          src="/path/to/default-image.jpg" // Replace with the path to your default image
         />
       </Modal>
     </>

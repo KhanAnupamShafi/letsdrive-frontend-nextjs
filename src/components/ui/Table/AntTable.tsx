@@ -7,7 +7,14 @@ interface TableProps<T> {
 }
 
 const MyTable = <T,>({ columns, data }: TableProps<T[]>) => {
-  return <AntTable columns={columns} dataSource={data} />;
+  return (
+    <AntTable
+      pagination={{ pageSize: 5 }}
+      bordered
+      columns={columns}
+      dataSource={data}
+    />
+  );
 };
 
 export default MyTable;
