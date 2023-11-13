@@ -28,9 +28,9 @@ export const getAllCars = async (
     headers: {
       'Content-Type': 'application/json',
     },
-    // cache: 'no-store',
+    cache: 'no-cache',
     next: {
-      revalidate: 5,
+      // revalidate: 5,
       tags: ['car-packages'],
     },
   });

@@ -10,7 +10,7 @@ const hybridRoutes = ['/', '/login'];
 const userRoutes = ['/', '/profile', '/my-bookings'];
 const rolesRedirect: Record<string, string> = {
   admin: `${URI}/admin/home`,
-  // user: `${URI}/`,
+  user: `${URI}`,
 };
 export async function middleware(request: NextRequest) {
   const token = await getToken({
@@ -30,7 +30,7 @@ export async function middleware(request: NextRequest) {
     if (hybridRoutes.includes(pathname)) {
       return NextResponse.next();
     }
-    return NextResponse.redirect(`${URI}`);
+    return NextResponse.redirect(`${URI}/login`);
   }
 
   const role = decodedToken?.role as string;

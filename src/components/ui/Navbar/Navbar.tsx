@@ -111,10 +111,12 @@ function Navbar({ session }: { session: boolean }) {
                   </Link>
                 </li>
                 <li className="menu-items relative cursor-pointer">
-                  <span className="flex items-center justify-between gap-1">
-                    Listings
-                    <Dot />
-                  </span>
+                  <a href="#category">
+                    <span className="flex items-center justify-between gap-1">
+                      Listings
+                      <Dot />
+                    </span>
+                  </a>
                 </li>
                 <li className="menu-items relative cursor-pointer">
                   <span className="flex items-center justify-between gap-1">

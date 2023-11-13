@@ -1,25 +1,28 @@
 import {
+  ArrowBigRight,
   CalendarRange,
   DollarSign,
   FastForward,
   MoonIcon,
 } from 'lucide-react';
-
+import Image from 'next/image';
+import Pic from '/public/category-section-el.png';
 const Promotion = () => {
   return (
-    <section className="bg-left bg-contain bg-white lg:bg-[url('/img/benefit-section-bg.jpg')] bg-no-repeat relative">
-      {/* <img
+    <section
+      style={{
+        backgroundImage: `url("https://res.cloudinary.com/de98kpzgn/image/upload/h_1000,w_950/v1699882015/carrent_ve28wj.webp")`,
+        height: '100vh',
+        backgroundRepeat: 'no-repeat',
+      }}
+      className="mt-10 bg-left bg-contain bg-no-repeat relative">
+      <Image
         alt=""
-        loading="lazy"
         width={232}
         height={207}
-        decoding="async"
-        data-nimg={1}
         className="hidden xl:block absolute bottom-10 right-14"
-        srcSet="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcategory-section-el.558d556b.png&w=256&q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcategory-section-el.558d556b.png&w=640&q=75 2x"
-        src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcategory-section-el.558d556b.png&w=640&q=75"
-        style={{ color: 'transparent' }}
-      /> */}
+        src={Pic}
+      />
 
       <div className="py-[60px] lg:py-[120px]">
         <div className="container">
@@ -44,9 +47,11 @@ const Promotion = () => {
           </div>
           <div className="grid grid-cols-12">
             <div className="col-span-12 lg:col-span-4 xl:col-span-5" />
-            <div className="col-span-12 lg:col-span-8 xl:col-span-7 px-3 sm:px-6 lg:px-16 py-4 lg:py-10 bg-white rounded-2xl mt-12">
+            <div className="col-span-12 lg:col-span-8 xl:col-span-7 px-3 sm:px-6 lg:px-16 py-4 lg:py-10 bg-white border-solid border-2 border-sky-500 rounded-2xl mt-12">
               <button className="bg-[var(--primary-light)] p-1 rounded-full flex items-center">
-                <i className="las la-arrow-right p-2 md:p-3 rounded-full bg-primary text-white" />
+                <i className="las la-arrow-right p-2 md:p-3 rounded-full bg-primary text-white">
+                  <ArrowBigRight />
+                </i>
                 <span className="text-base sm:text-lg lg:text-xl font-medium sm:font-semibold px-2 sm:px-3 md:px-4">
                   Benefits
                 </span>

@@ -53,6 +53,7 @@ const SearchFilter: React.FC = () => {
     <>
       <Flex justify="space-between">
         <Form
+          className="my-5 "
           name="basic"
           // labelCol={{ span: 8 }}
           // wrapperCol={{ span: 16 }}

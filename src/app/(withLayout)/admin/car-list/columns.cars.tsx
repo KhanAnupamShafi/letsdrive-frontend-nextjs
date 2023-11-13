@@ -1,5 +1,5 @@
 'use client';
-import { cancelBooking } from '@/services/booking/cancelBooking';
+import { makeCarAvailable } from '@/services/booking/makeCarAvailable';
 import {
   Button,
   Dropdown,
@@ -15,7 +15,6 @@ import {
   ChevronDownCircle,
   XCircle,
 } from 'lucide-react';
-import carPic from '../../../../assets/car.png';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -56,7 +55,7 @@ const showPromiseConfirm = (id: string) => {
       className: 'bg-red-500',
     },
     onOk() {
-      return cancelBooking(id) // Call your async function here
+      return makeCarAvailable(id) // Call your async function here
         .then(() => {
           // Handle success
           message.info('Operation completed successfully');
@@ -113,17 +112,22 @@ export const columns: any = [
     title: 'Image',
     dataIndex: 'image',
     key: 'image',
-
+    width: '50%',
     render: (_: any, { image }: any) => {
+      console.log(image);
       return (
-        <span>
+        <Tag className="w-full h-56">
           <Image
-            src={carPic}
-            width={80}
-            height={40}
+            src={
+              image ||
+              'https://res.cloudinary.com/de98kpzgn/image/upload/v1697760976/photo-1546614042-7df3c24c9e5d_jpkxlc.webp'
+            }
+            className="object-cover"
+            // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            fill
             alt="Picture of the car"
           />
-        </span>
+        </Tag>
       );
     },
   },

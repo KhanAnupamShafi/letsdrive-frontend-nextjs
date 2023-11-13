@@ -1,6 +1,8 @@
+import { Car, Contact, Gem, Wrench } from 'lucide-react';
+
 const ServiceSection = () => {
   return (
-    <div className="container">
+    <div id="category" className="container">
       <div className="max-w-[570px] mx-auto flex flex-col items-center text-center">
         <button className="bg-[var(--primary-light)] p-1 rounded-full flex items-center">
           <i className="las la-arrow-right p-2 md:p-3 rounded-full bg-primary text-white" />
@@ -18,7 +20,9 @@ const ServiceSection = () => {
       <div className="flex flex-wrap justify-center gap-6">
         <div className="border rounded-xl max-w-[306px] cursor-pointer group duration-300">
           <div className="p-8 bg-white group-hover:bg-primary rounded-t-xl group-hover:text-white duration-300">
-            <i className="las la-city text-7xl group-hover:text-white duration-300 text-primary false false" />
+            <i className="las la-city text-7xl group-hover:text-white duration-300 text-primary false false">
+              <Car size={40} />
+            </i>
             <h4 className="font-semibold text-xl pt-2 pb-3 text-neutral-700 group-hover:text-white">
               Economy
             </h4>
@@ -28,15 +32,18 @@ const ServiceSection = () => {
             </p>
           </div>
           <div className="bg-[var(--bg-1)] p-8 rounded-b-xl group-hover:bg-[#212391] group-hover:text-white duration-300">
-            <a href="#">
-              Read More <i className="las la-arrow-right" />
+            <a href="#" className="group-hover:text-white">
+              Read More{' '}
+              <i className="las la-arrow-right group-hover:text-white" />
             </a>
           </div>
         </div>
 
         <div className="border rounded-xl max-w-[306px] cursor-pointer group duration-300">
           <div className="p-8 bg-white group-hover:bg-primary rounded-t-xl group-hover:text-white duration-300">
-            <i className="las la-building text-7xl group-hover:text-white duration-300 text-primary false false" />
+            <i className="las la-building text-7xl group-hover:text-white duration-300 text-primary false false">
+              <Gem size={40} />
+            </i>
             <h4 className="font-semibold text-xl pt-2 pb-3 text-neutral-700 group-hover:text-white">
               Premium
             </h4>
@@ -46,7 +53,7 @@ const ServiceSection = () => {
             </p>
           </div>
           <div className="bg-[var(--bg-1)] p-8 rounded-b-xl group-hover:bg-[#212391] group-hover:text-white duration-300">
-            <a href="#">
+            <a href="#" className="group-hover:text-white">
               Read More <i className="las la-arrow-right" />
             </a>
           </div>
@@ -54,24 +61,28 @@ const ServiceSection = () => {
 
         <div className="border rounded-xl max-w-[306px] cursor-pointer group duration-300">
           <div className="p-8 bg-white group-hover:bg-primary rounded-t-xl group-hover:text-white duration-300">
-            <i className="las la-store text-7xl group-hover:text-white duration-300 false false text-[#9C742B]" />
+            <i className="las la-store text-7xl group-hover:text-white duration-300 false false text-[#9C742B]">
+              <Wrench size={40} />
+            </i>
             <h4 className="font-semibold text-xl pt-2 pb-3 text-neutral-700 group-hover:text-white">
               Delux
             </h4>
             <p>
-              Luxury High-end Premium features Exquisite comfort Elite
-              experience
+              Luxury High end Premium features with Exquisite comfort
+              and Elite experience .
             </p>
           </div>
           <div className="bg-[var(--bg-1)] p-8 rounded-b-xl group-hover:bg-[#212391] group-hover:text-white duration-300">
-            <a href="#">
+            <a href="#" className="group-hover:text-white">
               Find More <i className="las la-arrow-right" />
             </a>
           </div>
         </div>
         <div className="border rounded-xl max-w-[306px] cursor-pointer group duration-300">
           <div className="p-8 bg-white group-hover:bg-primary rounded-t-xl group-hover:text-white duration-300">
-            <i className="las la-landmark text-7xl group-hover:text-white duration-300 false text-[#22814B] false" />
+            <i className="las la-landmark text-7xl group-hover:text-white duration-300 false text-[#22814B] false">
+              <Contact size={40} />
+            </i>
             <h4 className="font-semibold text-xl pt-2 pb-3 text-neutral-700 group-hover:text-white">
               Family
             </h4>
@@ -81,7 +92,7 @@ const ServiceSection = () => {
             </p>
           </div>
           <div className="bg-[var(--bg-1)] p-8 rounded-b-xl group-hover:bg-[#212391] group-hover:text-white duration-300">
-            <a href="#">
+            <a href="#" className="group-hover:text-white">
               Find More <i className="las la-arrow-right" />
             </a>
           </div>
@@ -91,7 +102,7 @@ const ServiceSection = () => {
             <div className="text-center">
               <h2 className="h2 mb-2 group-hover:text-white">25+</h2>
               <p>
-                Explore Properties and <br /> Invest with Confidence
+                Explore cars and <br /> choose ur desired package
               </p>
               <a
                 className="rounded-full bg-white group-hover:bg-[var(--tertiary)] mt-4 p-6 inline-block text-black"

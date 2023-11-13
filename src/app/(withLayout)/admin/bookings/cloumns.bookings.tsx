@@ -1,5 +1,6 @@
 'use client';
 
+import { approveBooking } from '@/services/booking/approveBooking';
 import { cancelBooking } from '@/services/booking/cancelBooking';
 import {
   Button,
@@ -31,18 +32,17 @@ const getDropdownMenuItems = (
   {
     key: '1',
     label: (
-      <Link href={`/admins/car-list/${id}`}>
-        <Flex align="baseline" gap={2}>
-          <span>Approve</span> <CheckCheck size={14} />
-        </Flex>
-      </Link>
+      <Flex align="baseline" gap={2}>
+        <span>Approve</span> <CheckCheck size={14} />
+      </Flex>
     ),
+    onClick: () => acceptBookingHandler(id),
     disabled: status === 'APPROVED' || status === 'CANCELED', // Updated condition
   },
-  {
-    key: '2',
-    label: <Link href={`/admins/bookings/${id}/update`}>Edit</Link>,
-  },
+  // {
+  //   key: '2',
+  //   label: <Link href={`/admins/bookings/${id}/update`}>Edit</Link>,
+  // },
   {
     key: '3',
     label: (
@@ -67,6 +67,28 @@ const showPromiseConfirm = (id: string) => {
     },
     onOk() {
       return cancelBooking(id) // Call your async function here
+        .then(() => {
+          // Handle success
+          message.info('Operation completed successfully');
+        })
+        .catch((error) => {
+          // Handle errors
+          message.error('Oops, an error occurred:', error);
+        });
+    },
+    onCancel() {},
+  });
+};
+const acceptBookingHandler = (id: string) => {
+  confirm({
+    title: 'Are You Sure?',
+    icon: <AlertTriangle color="red" />,
+    content: 'This is irreversible',
+    okButtonProps: {
+      className: 'bg-red-500',
+    },
+    onOk() {
+      return approveBooking(id) // Call your async function here
         .then(() => {
           // Handle success
           message.info('Operation completed successfully');
@@ -217,6 +239,8 @@ export const columns: any = [
         color = 'gold';
       } else if (status === 'APPROVED') {
         color = 'green';
+      } else if (status === 'ENDED') {
+        color = 'blue';
       }
       return (
         <Tag color={color} key={status}>

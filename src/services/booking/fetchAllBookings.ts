@@ -23,9 +23,9 @@ export const getAllBookings = async (
     headers: {
       'Content-Type': 'application/json',
     },
-    // cache: "no-cache"
+    cache: 'no-cache',
     next: {
-      revalidate: 24 * 60 * 60,
+      // revalidate: 24 * 60 * 60,
       tags: ['bookings'],
     },
   });

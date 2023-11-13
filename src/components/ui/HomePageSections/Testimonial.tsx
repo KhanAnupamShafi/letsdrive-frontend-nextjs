@@ -65,7 +65,7 @@ const Testimonial = () => {
                 />
               </div>
               <div className="flex-grow">
-                <h5 className="mb-1 font-semibold"> Kiss Laura </h5>
+                <h5 className="mb-1 font-semibold"> K. Laura </h5>
                 <p className="mb-0 clr-neutral-500">
                   {' '}
                   Product Designer{' '}
