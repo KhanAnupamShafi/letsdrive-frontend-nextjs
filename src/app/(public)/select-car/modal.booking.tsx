@@ -16,6 +16,7 @@ import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import { CalendarDays, Info, MapPin } from 'lucide-react';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
 
 type ModalBookingProps = {
@@ -62,6 +63,7 @@ const ModalBooking = ({
   );
 
   const { data: session } = useSession();
+  console.log(session);
   // Calculate the difference in days
   const parsedDate = dayjs(startDate, dateFormat).toISOString();
   const parsedTodayDate = new Date().toISOString();
@@ -100,8 +102,11 @@ const ModalBooking = ({
         console.error('Error:', error);
       });
   }, [valueRadio, totalDays, carId]);
-
+  const router = useRouter();
   const handleOk = async () => {
+    if (session === null) {
+      router.push('/login');
+    }
     const payload = {
       bookingDate: parsedTodayDate,
       reserveDays: totalDays,
