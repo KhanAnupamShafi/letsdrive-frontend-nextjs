@@ -78,7 +78,7 @@ const Testimonial = () => {
             </div>
           </div>
           <div className="border border-dashed my-6" />
-          <div className="flex gap-1 mb-3">
+          <div className="flex gap-1 pt-6 lg:pt-0 mb-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
@@ -141,10 +141,11 @@ const Testimonial = () => {
             </svg>
           </div>
           <p className="mb-0 clr-neutral-500">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Doloribus laudantium maxime odit reiciendis optio, magnam
-            magni, officia earum obcaecati eius architecto? Voluptatem
-            dolores vero rem eum aperiam quaerat assumenda illum!
+            If you’re looking for cheap and economical car hire in
+            Dhaka city, come to them and make a reservation right now.
+            You do not have to pay anything until you are picked up.
+            They give rental car assistance to customers across
+            Bangladesh.
           </p>
           <div className="border border-dashed my-6" />
         </div>

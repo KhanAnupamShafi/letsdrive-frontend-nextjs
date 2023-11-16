@@ -1,7 +1,7 @@
 'use client';
 
 import Footer from '@/components/ui/HomePageSections/Footer';
-import { BackTop } from 'antd';
+import { FloatButton } from 'antd';
 import { SessionProvider } from 'next-auth/react';
 import { Providers } from './providers';
 
@@ -16,7 +16,7 @@ export default function AuthSessionProvider({
         <body
           className="font-sans text-base"
           suppressHydrationWarning={true}>
-          <BackTop />
+          <FloatButton.BackTop />
 
           {children}
           <Footer />

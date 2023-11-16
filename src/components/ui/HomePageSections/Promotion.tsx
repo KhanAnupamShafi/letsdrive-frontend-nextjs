@@ -35,8 +35,8 @@ const Promotion = () => {
                 <i className="text-[var(--tertiary)] las la-star" />
                 <i className="text-[var(--tertiary)] las la-star" />
               </div>
-              <p className="mt-4 text-xl">
-                <span className="text-primary">
+              <p className="mt-4 text-xl bg-white rounded p-2">
+                <span className="text-primary ">
                   {' '}
                   99.5% Customer Satisfaction{' '}
                 </span>{' '}
@@ -47,7 +47,7 @@ const Promotion = () => {
           </div>
           <div className="grid grid-cols-12">
             <div className="col-span-12 lg:col-span-4 xl:col-span-5" />
-            <div className="col-span-12 lg:col-span-8 xl:col-span-7 px-3 sm:px-6 lg:px-16 py-4 lg:py-10 bg-white border-solid border-2 border-sky-500 rounded-2xl mt-12">
+            <div className="col-span-12 lg:col-span-8 xl:col-span-7 px-3 sm:px-6 lg:px-16 py-4 lg:py-10 bg-white lg:border-solid border-2 border-sky-500 rounded-2xl mt-12">
               <button className="bg-[var(--primary-light)] p-1 rounded-full flex items-center">
                 <i className="las la-arrow-right p-2 md:p-3 rounded-full bg-primary text-white">
                   <ArrowBigRight />

@@ -28,7 +28,7 @@ function Navbar({ session }: { session: boolean }) {
       } else {
         setScrolling(false);
         setClassName(
-          'z-30 border-y sticky top-0 duration-300 lg:text-2xl'
+          'z-30 border-y hidden lg:block sticky top-0 duration-300 lg:text-2xl'
         );
       }
     };

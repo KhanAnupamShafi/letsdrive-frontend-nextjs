@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 * {
   padding: 0;
   margin: 0;
@@ -36,45 +35,51 @@
 
 /* container responsive
  */
+@media (max-width: 575px) {
+  .container {
+    max-width: 340px;
+  }
+}
+
 @media (min-width: 576px) and (max-width: 767px) {
   .container {
-    max-width: 540px
+    max-width: 540px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .container {
-    max-width: 720px
+    max-width: 720px;
   }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
   .container {
-    max-width: 960px
+    max-width: 960px;
   }
 }
 
 @media (min-width: 1200px) and (max-width: 1399px) {
   .container {
-    max-width: 1140px
+    max-width: 1140px;
   }
 }
 
 @media (min-width: 1400px) and (max-width: 1599px) {
   .container {
-    max-width: 1320px
+    max-width: 1320px;
   }
 }
 
 @media (min-width: 1600px) and (max-width: 1799px) {
   .container {
-    max-width: 1600px
+    max-width: 1600px;
   }
 }
 
 @media (min-width: 1800px) {
   .container {
-    max-width: 1800px
+    max-width: 1800px;
   }
 }
 

@@ -1,3 +1,4 @@
+import MobileBar from '@/components/ui/MobileBar/MobileBar';
 import Navbar from '@/components/ui/Navbar/Navbar';
 import TopHeader from '@/components/ui/TopHeader/TopHeader';
 import { authOptions } from '@/lib/authOptions/AuthOptions';
@@ -9,6 +10,7 @@ const DefaultHeader = async () => {
     <>
       <TopHeader session={session?.email ? true : false} />
       <Navbar session={session?.email ? true : false} />
+      <MobileBar />
     </>
   );
 };
