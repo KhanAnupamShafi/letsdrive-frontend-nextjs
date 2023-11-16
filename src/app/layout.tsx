@@ -1,7 +1,6 @@
 import StyledComponentsRegistry from '@/lib/AntdRegistry';
 import AuthSessionProvider from '@/lib/AuthProvider';
 import theme from '@/theme/themeConfig';
-import { Analytics } from '@vercel/analytics/react';
 import { ConfigProvider } from 'antd';
 import type { Metadata } from 'next';
 import Head from 'next/head';
@@ -27,7 +26,6 @@ export default function RootLayout({
           <AuthSessionProvider>{children}</AuthSessionProvider>
         </ConfigProvider>
       </StyledComponentsRegistry>
-      <Analytics />
     </html>
   );
 }
