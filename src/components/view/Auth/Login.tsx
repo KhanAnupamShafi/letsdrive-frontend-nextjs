@@ -52,7 +52,7 @@ const Login: React.FC<RegisterProps> = ({ setCurrentView }) => {
             <label
               htmlFor="enter-email"
               className="text-base sm:text-lg md:text-xl font-medium block mb-3">
-              Enter Your Email ID
+              Enter Your Email ID (admin@test.com)
             </label>
             <input
               {...register('email')}
@@ -73,7 +73,7 @@ const Login: React.FC<RegisterProps> = ({ setCurrentView }) => {
             <label
               htmlFor="enter-password"
               className="text-base sm:text-lg md:text-xl font-normal sm:font-medium block mb-3">
-              Enter Your Password
+              Enter Your Password (123456)
             </label>
             <input
               {...register('password')}
